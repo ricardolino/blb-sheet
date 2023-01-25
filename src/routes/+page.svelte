@@ -39,7 +39,7 @@
 <div class="head">
 	<input bind:value={name} />
 	<input bind:value={archtype} />
-	<Attribute name="EXP" value={experience} min=0 max=8></Attribute>	
+	<Attribute name="EXP" value={experience} min={0} max={8}></Attribute>	
 </div>
 
 <div>
@@ -49,9 +49,9 @@
 	<Attribute name="Affluence" value={affluence}></Attribute>
 </div>
 
-<Attribute name="Vigor" value={vigor.current} min=1 max={vigor.max}></Attribute>
-<Attribute name="Grip" value={grip} min=1></Attribute>
-<Attribute name="Armor" value={armor} min=7></Attribute>
+<Attribute name="Vigor" value={vigor.current} min={1} max={vigor.max}></Attribute>
+<Attribute name="Grip" value={grip} min={1}></Attribute>
+<Attribute name="Armor" value={armor} min={7}></Attribute>
 
 <ItemList name="Advancements" list={[]}></ItemList>
 <ItemList name="Consequences" list={consequences}></ItemList>

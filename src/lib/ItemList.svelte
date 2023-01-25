@@ -1,14 +1,16 @@
-<script>
-	export let name;
-	export let list;
+<script lang="ts">
+    import type { Item } from './types';
+
+	export let name:Item["name"];
+	export let list:Item[];
 
 	let newItem = "";
 
-	function deleteItem (i) {
+	function deleteItem (i:number) {
 		list = list.filter(item => item !== list[i]);
 	}
-	
-	function addItem (name) {
+
+	function addItem (name:Item["name"]) {
 		list = [...list, {id: list.length, name}];
         newItem = "";
 	}

@@ -1,9 +1,8 @@
-<script>
-	export let value;
-	export let name;
-	export let max = undefined;
-	export let min = undefined;
-	
+<script lang="ts">
+    export let value:number;
+	export let name:string;
+	export let max:number|undefined = undefined;
+	export let min:number|undefined = undefined;
 </script>
 <style>
 	input {
