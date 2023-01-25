@@ -30,31 +30,37 @@
 	];
 </script>
 
-<div class="head">
+<div class="info">
 	<input bind:value={name} />
 	<input bind:value={archtype} />
 	<Attribute name="EXP" value={experience} min={0} max={8} />
 </div>
 
-<div>
+<div class="stats">
 	<Attribute name="Brawn" value={brawn} />
 	<Attribute name="Wit" value={wit} />
 	<Attribute name="Will" value={will} />
 	<Attribute name="Affluence" value={affluence} />
 </div>
 
-<Attribute name="Vigor" value={vigor.current} min={1} max={vigor.max} />
-<Attribute name="Grip" value={grip} min={1} />
-<Attribute name="Armor" value={armor} min={7} />
+<div class="well-being">
+    <Attribute name="Vigor" value={vigor.current} min={1} max={vigor.max} />
+    <Attribute name="Grip" value={grip} min={1} />
+    <Attribute name="Armor" value={armor} min={7} />
+</div>
 
 <ItemList name="Advancements" list={[]} />
+
 <ItemList name="Consequences" list={consequences} />
+
 <ItemList name="Equipment" list={[]} />
+
 <ItemList name="Treasure" list={[]} />
+
 <ItemList name="Weapons" list={[]} />
 
 <style>
-	.head {
+	.info {
 		display: flex;
 	}
 </style>
