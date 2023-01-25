@@ -11,7 +11,7 @@
 	}
 
 	function addItem (name:Item["name"]) {
-		list = [...list, {id: list.length, name}];
+		list = [...list, { id: list.length, name }];
         newItem = "";
 	}
 </script>
@@ -24,5 +24,8 @@
 			<button on:click={() => deleteItem(index)}>x</button>
 		</li>
 	{/each}
-	<li><input bind:value={newItem}><button disabled={!newItem} on:click={() => addItem(newItem)}>+</button></li>
+	<li>
+        <input bind:value={newItem}>
+        <button disabled={!newItem} on:click={() => addItem(newItem)}>+</button>
+    </li>
 </ul>

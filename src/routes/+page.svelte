@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Attribute from '../lib/Attribute.svelte'
 	import ItemList from '../lib/ItemList.svelte'
 
