@@ -1,18 +1,18 @@
 <script lang="ts">
-    import type { Item } from './types';
+	import type { Item } from './types';
 
-	export let name:Item["name"];
-	export let list:Item[];
+	export let name: Item['name'];
+	export let list: Item[];
 
-	let newItem = "";
+	let newItem = '';
 
-	function deleteItem (i:number) {
-		list = list.filter(item => item !== list[i]);
+	function deleteItem(i: number) {
+		list = list.filter((item) => item !== list[i]);
 	}
 
-	function addItem (name:Item["name"]) {
+	function addItem(name: Item['name']) {
 		list = [...list, { id: list.length, name }];
-        newItem = "";
+		newItem = '';
 	}
 </script>
 
@@ -25,7 +25,7 @@
 		</li>
 	{/each}
 	<li>
-        <input bind:value={newItem}>
-        <button disabled={!newItem} on:click={() => addItem(newItem)}>+</button>
-    </li>
+		<input bind:value={newItem} />
+		<button disabled={!newItem} on:click={() => addItem(newItem)}>+</button>
+	</li>
 </ul>

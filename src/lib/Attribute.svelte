@@ -1,9 +1,20 @@
 <script lang="ts">
-    export let value:number;
-	export let name:string;
-	export let max:number|undefined = undefined;
-	export let min:number|undefined = undefined;
+	export let value: number;
+	export let name: string;
+	export let max: number | undefined = undefined;
+	export let min: number | undefined = undefined;
 </script>
+
+<label class="wrapper">
+	<div class="field">
+		<input type="number" bind:value {min} {max} />
+		<span class="max"
+			>{#if max}\ {max}{/if}</span
+		>
+	</div>
+	<span class="label">{name}</span>
+</label>
+
 <style>
 	input {
 		border: none;
@@ -14,7 +25,7 @@
 	}
 
 	input:focus {
-    outline: none;
+		outline: none;
 	}
 
 	.wrapper {
@@ -25,29 +36,21 @@
 		flex-direction: column;
 		flex-basis: max-content;
 	}
-	
+
 	.field {
 		display: flex;
 		justify-content: center;
 		position: relative;
 	}
-	
+
 	.max {
 		display: inline-block;
 		position: absolute;
 		font-size: 0.7rem;
-    transform: translateX(1.5rem);
+		transform: translateX(1.5rem);
 	}
 
 	.label {
-		text-align: center;		
+		text-align: center;
 	}
 </style>
-
-<label class="wrapper">
-	<div class="field">
-		<input type=number bind:value={value} min={min} max={max} />
-		<span class="max">{#if max}\ {max}{/if}</span>
-	</div>
-	<span class="label">{name}</span>
-</label>
