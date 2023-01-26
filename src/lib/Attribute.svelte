@@ -36,6 +36,7 @@
 		flex-direction: column;
 		flex-basis: max-content;
 		min-width: 5rem;
+		border-radius: 0.1rem;
 	}
 
 	.field {

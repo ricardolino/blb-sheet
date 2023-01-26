@@ -60,6 +60,10 @@
 <ItemList name="Weapons" list={[]} />
 
 <style>
+	* {
+		all: none;
+	}
+
 	.info,
 	.stats,
 	.well-being {
