@@ -74,10 +74,6 @@
 		min-width: 0;
 	}
 
-	.info {
-		flex-wrap: wrap;
-	}
-
 	.info,
 	.stats,
 	.well-being {
