@@ -22,7 +22,7 @@
 		padding: 0;
 		text-align: right;
 		max-width: 3.1rem;
-    	font-size: 2rem;
+		font-size: 2rem;
 	}
 
 	input:focus {

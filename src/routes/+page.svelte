@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Item } from '../lib/types';
+	import { WEAPONS } from '../lib/constants';
 
 	import Attribute from '../lib/Attribute.svelte';
 	import ItemList from '../lib/ItemList.svelte';
@@ -23,9 +23,9 @@
 </script>
 
 <div class="info" class:hidden={inFight}>
-	<input class=textField bind:value={player} />
-	<input class=textField bind:value={name} />
-	<input class=textField bind:value={archtype} />
+	<input class="textField" bind:value={player} />
+	<input class="textField" bind:value={name} />
+	<input class="textField" bind:value={archtype} />
 	<Attribute name="EXP" value={experience} min={0} max={8} />
 </div>
 
@@ -42,19 +42,19 @@
 		<Attribute name="Current" value={currentVigor} min={1} />
 		<Attribute name="Max" value={maxVigor} min={1} />
 	</div>
-    <Attribute name="Grip" value={grip} min={1} />
-    <Attribute name="Armor" value={armor} min={7} />
+	<Attribute name="Grip" value={grip} min={1} />
+	<Attribute name="Armor" value={armor} min={7} />
 </div>
 
-<ItemList name="Advancements" list={[]} />
+<ItemList name="Advancements" list={[]} options={[]} />
 
-<ItemList name="Consequences" list={[]} />
+<ItemList name="Consequences" list={[]} options={[]} />
 
-<ItemList name="Equipment" list={[]} />
+<ItemList name="Equipment" list={[]} options={[]} />
 
-<ItemList name="Treasure" list={[]} />
+<ItemList name="Treasure" list={[]} options={[]} />
 
-<ItemList name="Weapons" list={[]} />
+<ItemList name="Weapons" list={[]} options={WEAPONS} />
 
 <style>
 	.textField {
