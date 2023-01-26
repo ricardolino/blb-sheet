@@ -5,6 +5,8 @@
 	export let list: Item[];
 	export let options: Item[];
 
+	export let handleResult = (result: any) => String;
+
 	let search = '';
 	let results: Item[] = [];
 
@@ -15,7 +17,6 @@
 	}
 
 	function addItem(item: Item) {
-		console.log('### item', JSON.stringify(item));
 		list = [...list, item];
 		search = '';
 		results = [];
@@ -26,25 +27,62 @@
 	}
 </script>
 
-<h2>{name}</h2>
-<ul>
-	{#each list as item}
+<div class="itemList">
+	<h2 class="title">{name}</h2>
+	<ul class="list">
+		{#each list as item}
+			<li>
+				{item.name}
+				<button on:click={() => deleteItem(item)}>x</button>
+			</li>
+		{/each}
 		<li>
-			{item.name}
-			<button on:click={() => deleteItem(item)}>x</button>
+			<input class="search" bind:value={search} placeholder="search for..." />
+			{#if search.length >= 3 && results.length > 0}
+				<ul class="results">
+					{#each results as result}
+						<li>
+							<span>{handleResult(result)}</span>
+							<button disabled={!search} on:click={() => addItem(result)}>+</button>
+						</li>
+					{/each}
+				</ul>
+			{/if}
 		</li>
-	{/each}
-	<li>
-		<input bind:value={search} />
-		{#if search.length >= 3}
-			<ul>
-				{#each results as result}
-					<li>
-						<span>{result.name}</span>
-						<button disabled={!search} on:click={() => addItem(result)}>+</button>
-					</li>
-				{/each}
-			</ul>
-		{/if}
-	</li>
-</ul>
+	</ul>	
+</div>
+
+<style>
+	.itemList {
+		display: flex;
+		flex-direction: column;
+		flex: auto;
+		margin-top: 1rem;
+		gap: 1rem;
+	}
+
+	.title {
+		margin: 0;
+	}
+
+	.search {
+		font-size: 1rem;
+		box-sizing: border-box;
+		padding: 0.5rem 1rem;
+	}
+
+	.list,
+	.results {
+		padding: 0;
+		list-style: none;
+		display: flex;
+    	flex-direction: column;
+    	gap: 0.5rem;
+		margin: 0;
+
+	}
+
+	.results {
+		margin-top: 0.5rem;
+	}
+</style>

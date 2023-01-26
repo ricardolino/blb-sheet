@@ -1,23 +1,24 @@
-import type { range, stat, modifier } from './constants';
-
-export interface WeaponTypeModifier {
-	name: modifier;
-	target: object;
-}
-
-export interface WeaponType {
-	range: range;
-	attack: stat[];
-	damageMod: number;
-	initiative: number;
-	modifiers?: WeaponTypeModifier[];
-}
+import type { Range, Stat, Modifier, WeaponType as EnumWeaponType } from './constants';
 
 export interface Item {
 	id: number;
 	name: string;
 }
 
+export interface WeaponType {
+	name: EnumWeaponType;
+	range: Range;
+	attack: Stat[];
+	damageMod: number;
+	initiative: number;
+	modifiers?: {
+		name: Modifier;
+		target: object;
+	}[];
+}
+
 export interface Weapon extends Item {
 	type: WeaponType;
 }
+
+export type HandleResult = (result: Item | Weapon) => String;

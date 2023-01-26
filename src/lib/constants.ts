@@ -1,43 +1,54 @@
 import type { Weapon } from './types';
 
-export enum range {
+export enum Range {
 	melee,
 	short,
 	long
 }
 
-export enum stat {
+export enum Stat {
 	brawn,
 	wit,
 	will,
 	affluence
 }
 
-export enum modifier {
+export enum Modifier {
 	twoHanded,
 	melee,
 	improvised
 }
 
-export enum modifierType {
+export enum ModifierType {
 	conditional,
 	effect
 }
 
-export enum rollType {
+export enum RollType {
 	againstOdds
+}
+
+export enum WeaponType {
+	hand,
+	heavy,
+	light,
+	long,
+	throwing,
+	ranged,
+	improvised
 }
 
 const WEAPON_TYPE = {
 	hand: {
-		range: range.melee,
-		attack: [stat.brawn],
+		name: WeaponType.hand,
+		range: Range.melee,
+		attack: [Stat.brawn],
 		damageMod: 0,
 		initiative: 0,
 		modifiers: [
 			{
-				name: modifier.twoHanded,
-				type: modifierType.conditional,
+				name: Modifier.twoHanded,
+				type: ModifierType.conditional,
 				target: {
 					damageMod: 1
 				}
@@ -45,20 +56,22 @@ const WEAPON_TYPE = {
 		]
 	},
 	heavy: {
-		range: range.melee,
-		attack: [stat.brawn],
+		name: WeaponType.heavy,
+		range: Range.melee,
+		attack: [Stat.brawn],
 		damageMod: 1,
 		initiative: -1
 	},
 	light: {
-		range: range.melee,
-		attack: [stat.wit],
+		name: WeaponType.light,
+		range: Range.melee,
+		attack: [Stat.wit],
 		damageMod: -1,
 		initiative: 0,
 		modifiers: [
 			{
-				name: modifier.twoHanded,
-				type: modifierType.conditional,
+				name: Modifier.twoHanded,
+				type: ModifierType.conditional,
 				target: {
 					initiative: 1
 				}
@@ -66,14 +79,15 @@ const WEAPON_TYPE = {
 		]
 	},
 	long: {
-		range: range.short,
-		attack: [stat.brawn],
+		name: WeaponType.long,
+		range: Range.short,
+		attack: [Stat.brawn],
 		damageMod: 0,
 		initiative: -1,
 		modifiers: [
 			{
-				name: modifier.twoHanded,
-				type: modifierType.conditional,
+				name: Modifier.twoHanded,
+				type: ModifierType.conditional,
 				target: {
 					damageMod: 1
 				}
@@ -81,14 +95,15 @@ const WEAPON_TYPE = {
 		]
 	},
 	throwing: {
-		range: range.short,
-		attack: [stat.wit, stat.brawn],
+		name: WeaponType.throwing,
+		range: Range.short,
+		attack: [Stat.wit, Stat.brawn],
 		damageMod: 0,
 		initiative: 0,
 		modifiers: [
 			{
-				name: modifier.melee,
-				type: modifierType.conditional,
+				name: Modifier.melee,
+				type: ModifierType.conditional,
 				target: {
 					damageMod: -1
 				}
@@ -96,22 +111,24 @@ const WEAPON_TYPE = {
 		]
 	},
 	ranged: {
-		range: range.long,
-		attack: [stat.wit],
+		name: WeaponType.ranged,
+		range: Range.long,
+		attack: [Stat.wit],
 		damageMod: 0,
 		initiative: 0
 	},
 	improvised: {
-		range: range.melee,
-		attack: [stat.brawn],
+		name: WeaponType.improvised,
+		range: Range.melee,
+		attack: [Stat.brawn],
 		damageMod: -2, // TODO: change to half damage
 		initiative: 0,
 		modifiers: [
 			{
-				name: modifier.improvised,
-				type: modifierType.effect,
+				name: Modifier.improvised,
+				type: ModifierType.effect,
 				target: {
-					rollType: rollType.againstOdds
+					RollType: RollType.againstOdds
 				}
 			}
 		]
