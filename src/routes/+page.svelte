@@ -44,7 +44,7 @@
 	<Attribute name="Wit" value={wit} />
 	<Attribute name="Will" value={will} />
 	<Attribute name="Affluence" value={affluence} />
-	<input type="checkbox" bind:value={inFight} />
+	<input type="checkbox" bind:checked={inFight} />
 </div>
 
 <div class="well-being">
