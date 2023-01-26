@@ -32,7 +32,7 @@
 	];
 </script>
 
-<div class="info" class:hidden="{inFight === true}">
+<div class="info" class:hidden={inFight}>
 	<input bind:value={player} />
 	<input bind:value={name} />
 	<input bind:value={archtype} />
