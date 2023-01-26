@@ -2,6 +2,7 @@
 	import Attribute from '../lib/Attribute.svelte';
 	import ItemList from '../lib/ItemList.svelte';
 
+	let player = '';
 	let name = '';
 	let archtype = '';
 	let experience = 0;
@@ -17,6 +18,7 @@
 	};
 	let grip = 0;
 	let armor = 7;
+	let inFight = false;
 
 	let consequences = [
 		{
@@ -30,7 +32,8 @@
 	];
 </script>
 
-<div class="info">
+<div class="info" class:hidden="{inFight === true}">
+	<input bind:value={player} />
 	<input bind:value={name} />
 	<input bind:value={archtype} />
 	<Attribute name="EXP" value={experience} min={0} max={8} />
@@ -41,10 +44,14 @@
 	<Attribute name="Wit" value={wit} />
 	<Attribute name="Will" value={will} />
 	<Attribute name="Affluence" value={affluence} />
+	<input type="checkbox" bind:value={inFight} />
 </div>
 
 <div class="well-being">
-    <Attribute name="Vigor" value={vigor.current} min={1} max={vigor.max} />
+	<div class="vigor">
+		<Attribute name="Current" value={vigor.current} min={1} max={vigor.max} />
+		<Attribute name="Max" value={vigor.max} min={1} max={vigor.max} />
+	</div>
     <Attribute name="Grip" value={grip} min={1} />
     <Attribute name="Armor" value={armor} min={7} />
 </div>
@@ -60,13 +67,13 @@
 <ItemList name="Weapons" list={[]} />
 
 <style>
-	* {
-		all: none;
-	}
-
 	.info,
 	.stats,
 	.well-being {
 		display: flex;
+	}
+
+	.hidden {
+		display: none;
 	}
 </style>
