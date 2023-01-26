@@ -20,8 +20,6 @@
 	let grip = 0;
 	let armor = 7;
 	let inFight = false;
-
-	let consequences:Item[] = [];
 </script>
 
 <div class="info" class:hidden={inFight}>
@@ -50,7 +48,7 @@
 
 <ItemList name="Advancements" list={[]} />
 
-<ItemList name="Consequences" list={consequences} />
+<ItemList name="Consequences" list={[]} />
 
 <ItemList name="Equipment" list={[]} />
 
