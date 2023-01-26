@@ -12,10 +12,9 @@
 	let will = 0;
 	let affluence = 0;
 
-	let vigor = {
-		current: 1,
-		max: 9
-	};
+	let currentVigor = 1;
+	let maxVigor = 9;
+
 	let grip = 0;
 	let armor = 7;
 	let inFight = false;
@@ -49,8 +48,8 @@
 
 <div class="well-being">
 	<div class="vigor">
-		<Attribute name="Current" value={vigor.current} min={1} max={vigor.max} />
-		<Attribute name="Max" value={vigor.max} min={1} max={vigor.max} />
+		<Attribute name="Current" value={currentVigor} min={1} max={maxVigor} />
+		<Attribute name="Max" value={maxVigor} min={1} max={maxVigor} />
 	</div>
     <Attribute name="Grip" value={grip} min={1} />
     <Attribute name="Armor" value={armor} min={7} />
@@ -73,7 +72,7 @@
 		display: flex;
 	}
 
-	.hidden {
+	:global(.hidden) {
 		display: none;
 	}
 </style>
