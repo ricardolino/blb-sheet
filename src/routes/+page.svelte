@@ -1,3 +1,8 @@
+<script context="module" lang="ts">
+	let currentVigor = 1;
+	let maxVigor = 9;
+</script>
+
 <script lang="ts">
 	import Attribute from '../lib/Attribute.svelte';
 	import ItemList from '../lib/ItemList.svelte';
@@ -11,9 +16,6 @@
 	let wit = 0;
 	let will = 0;
 	let affluence = 0;
-
-	let currentVigor = 1;
-	let maxVigor = 9;
 
 	let grip = 0;
 	let armor = 7;
