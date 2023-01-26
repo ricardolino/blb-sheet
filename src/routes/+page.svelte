@@ -32,9 +32,9 @@
 </script>
 
 <div class="info" class:hidden={inFight}>
-	<input bind:value={player} />
-	<input bind:value={name} />
-	<input bind:value={archtype} />
+	<input class=textField bind:value={player} />
+	<input class=textField bind:value={name} />
+	<input class=textField bind:value={archtype} />
 	<Attribute name="EXP" value={experience} min={0} max={8} />
 </div>
 
@@ -66,6 +66,12 @@
 <ItemList name="Weapons" list={[]} />
 
 <style>
+	.textField {
+		box-sizing: border-box;
+		padding: 0.5rem;
+		font-size: 2rem;
+	}
+
 	.info,
 	.stats,
 	.well-being {
