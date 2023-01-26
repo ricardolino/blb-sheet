@@ -25,7 +25,7 @@
 		</li>
 	{/each}
 	<li>
-		<input bind:value={newItem} />
+		<input bind:value={newItem} on:submit={() => addItem(newItem)} />
 		<button disabled={!newItem} on:click={() => addItem(newItem)}>+</button>
 	</li>
 </ul>
