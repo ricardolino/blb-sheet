@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Item } from '../lib/types';
+
 	import Attribute from '../lib/Attribute.svelte';
 	import ItemList from '../lib/ItemList.svelte';
 
@@ -19,16 +21,7 @@
 	let armor = 7;
 	let inFight = false;
 
-	let consequences = [
-		{
-			id: 0,
-			name: 'Fear of the Dark'
-		},
-		{
-			id: 1,
-			name: 'Fear of the Light'
-		}
-	];
+	let consequences:Item[] = [];
 </script>
 
 <div class="info" class:hidden={inFight}>
