@@ -70,6 +70,7 @@
 	.stats,
 	.well-being {
 		display: flex;
+		gap: 1rem;
 	}
 
 	:global(.hidden) {

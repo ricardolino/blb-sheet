@@ -30,8 +30,7 @@
 	}
 
 	.wrapper {
-		border: 1px double;
-		margin: 1rem;
+		border: 2px double;
 		padding: 0.5rem;
 		display: flex;
 		flex-direction: column;
