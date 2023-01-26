@@ -71,6 +71,7 @@
 		padding: 0.5rem;
 		font-size: 2rem;
 		border: 2px double;
+		min-width: 0;
 	}
 
 	.info {
