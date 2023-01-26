@@ -70,6 +70,7 @@
 		box-sizing: border-box;
 		padding: 0.5rem;
 		font-size: 2rem;
+		border: 2px double;
 	}
 
 	.info,
