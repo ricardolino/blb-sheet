@@ -1,8 +1,3 @@
-<script context="module" lang="ts">
-	let currentVigor = 1;
-	let maxVigor = 9;
-</script>
-
 <script lang="ts">
 	import Attribute from '../lib/Attribute.svelte';
 	import ItemList from '../lib/ItemList.svelte';
@@ -16,6 +11,9 @@
 	let wit = 0;
 	let will = 0;
 	let affluence = 0;
+
+	let currentVigor = 1;
+	let maxVigor = 9;
 
 	let grip = 0;
 	let armor = 7;
@@ -50,7 +48,7 @@
 
 <div class="well-being">
 	<div class="vigor">
-		<Attribute name="Current" value={currentVigor} min={1} max={maxVigor} />
+		<Attribute name="Current" value={currentVigor} min={1} />
 		<Attribute name="Max" value={maxVigor} min={1} />
 	</div>
     <Attribute name="Grip" value={grip} min={1} />
