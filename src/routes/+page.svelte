@@ -73,6 +73,10 @@
 		border: 2px double;
 	}
 
+	.info {
+		flex-wrap: wrap;
+	}
+
 	.info,
 	.stats,
 	.well-being {
