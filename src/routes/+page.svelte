@@ -60,7 +60,9 @@
 <ItemList name="Weapons" list={[]} />
 
 <style>
-	.info {
+	.info,
+	.stats,
+	.well-being {
 		display: flex;
 	}
 </style>

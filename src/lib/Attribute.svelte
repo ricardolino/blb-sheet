@@ -35,6 +35,7 @@
 		display: flex;
 		flex-direction: column;
 		flex-basis: max-content;
+		min-width: 5rem;
 	}
 
 	.field {
