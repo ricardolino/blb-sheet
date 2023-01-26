@@ -73,6 +73,10 @@
 		gap: 1rem;
 	}
 
+	.vigor {
+		display: flex;
+	}
+
 	:global(.hidden) {
 		display: none;
 	}
