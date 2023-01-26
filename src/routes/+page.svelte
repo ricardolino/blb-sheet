@@ -35,81 +35,92 @@
 	}
 </script>
 
-<section class="head">
-	<div class="info" class:hidden={status.inFight}>
-		<input class="field" bind:value={info.playerName} placeholder="Player Name" />
-		<input class="field" bind:value={info.characterName} placeholder="Character Name" />
-		<input class="field" bind:value={info.archetype} placeholder="Archetype" />
-		<Attribute name="EXP" value={info.experience} min={0} max={8} />
+<section class="head container">
+	<div class="flex spacer" class:hidden={status.inFight}>
+		<div class="half">
+			<input class="field" bind:value={info.playerName} placeholder="Player" />
+			<input class="field" bind:value={info.characterName} placeholder="Character" />
+		</div>
+		<div class="half">
+			<input class="field" bind:value={info.archetype} placeholder="Archetype" />
+			<Attribute name="EXP" value={info.experience} min={0} max={8} />
+		</div>
 	</div>
 	
-	<div class="stats">
-		<Attribute name="Brawn" value={stats.brawn} />
-		<Attribute name="Wit" value={stats.wit} />
-		<Attribute name="Will" value={stats.will} />
-		<Attribute name="Affluence" value={stats.affluence} />
-		<div class="vigor">
-			<Attribute name="Current" value={stats.vigor.current} min={1} />
-			<Attribute name="Max" value={stats.vigor.maximum} min={1} />
+	<div class="flex">
+		<div class="half">
+			<Attribute name="Brawn" value={stats.brawn} />
+			<Attribute name="Wit" value={stats.wit} />
+			<Attribute name="Will" value={stats.will} />
+			<Attribute name="Affluence" value={stats.affluence} />
 		</div>
-		<Attribute name="Grip" value={stats.grip} min={1} />
-		<Attribute name="Armor" value={stats.armor} min={7} />
+		<div class="half">
+			<div class="vigor">
+				<Attribute name="Current" value={stats.vigor.current} min={1} />
+				<Attribute name="Max" value={stats.vigor.maximum} min={1} />
+			</div>
+			<Attribute name="Grip" value={stats.grip} min={1} />
+			<Attribute name="Armor" value={stats.armor} min={7} />
+		</div>
 	</div>	
 </section>
 
-<section class="lists">
-	<div class="character">
-		<ItemList name="Advancements" list={[]} options={[]} />
-
-		<ItemList name="Consequences" list={[]} options={[]} />	
+<section class="container">
+	<div class="flex spacer">
+		<div class="half">
+			<ItemList name="Advancements" list={[]} options={[]} />
+		</div>
+		<div class="half">
+			<ItemList name="Consequences" list={[]} options={[]} />			
+		</div>
 	</div>
-	
-	<div class="items">
-		<ItemList name="Equipment" list={[]} options={[]} />
-	
-		<ItemList name="Treasure" list={[]} options={[]} />	
+	<div class="flex spacer">
+		<div class="half">
+			<ItemList name="Equipment" list={[]} options={[]} />
+		</div>
+		<div class="half">
+			<ItemList name="Treasure" list={[]} options={[]} />	
+		</div>	
 	</div>
-	
-	<ItemList name="Weapons" list={[]} options={WEAPONS} handleResult={weaponResult} />	
+	<div class="flex">
+		<ItemList name="Weapons" list={[]} options={WEAPONS} handleResult={weaponResult} />	
+	</div>
 </section>
 
 <style>
-	.head,
-	.lists {
-		max-width: 999px;
+	.container {
+		max-width: 864px;
     	margin-left: auto;
     	margin-right: auto;
+		margin-bottom: 2rem;
 	}
 
-	.info {
-		margin-bottom: 1rem;
-	}
-
-	.info,
-	.stats {
+	.flex {
 		display: flex;
-		justify-content: space-between;
 		gap: 1rem;
 	}
 
-	.info .field {
+	.half {
+		display: flex;
+		flex: auto;
+		justify-content: space-between;
+		gap: 1rem;
+		width: 50%;
+	}
+
+	.spacer {
+		margin-bottom: 1rem;
+	}
+
+	.field {
 		box-sizing: border-box;
 		padding: 0.5rem 1rem;
 		font-size: 1.5rem;
 		border: 2px double;
-		min-width: 0;
-	}
-
-	.stats {
-		flex-wrap: wrap;
+		width: 100%;
 	}
 
 	.vigor {
-		display: flex;
-	}
-
-	.character,
-	.items {
 		display: flex;
 	}
 

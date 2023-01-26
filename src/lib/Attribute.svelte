@@ -20,9 +20,10 @@
 		border: none;
 		margin: 0;
 		padding: 0;
-		text-align: right;
-		max-width: 3.1rem;
+		text-align: center;
 		font-size: 2rem;
+		width: 100%;
+		transform: translateX(8px);
 	}
 
 	input:focus {
@@ -34,8 +35,7 @@
 		padding: 0.5rem;
 		display: flex;
 		flex-direction: column;
-		flex-basis: max-content;
-		min-width: 5rem;
+		min-width: 4.5rem;
 		border-radius: 0.1rem;
 	}
 
