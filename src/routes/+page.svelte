@@ -13,7 +13,7 @@
 
 	let vigor = {
 		current: 1,
-		max: 1
+		max: 9
 	};
 	let grip = 0;
 	let armor = 7;
