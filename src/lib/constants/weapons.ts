@@ -1,32 +1,5 @@
-import type { Weapon } from './types';
-
-export enum Range {
-	melee,
-	short,
-	long
-}
-
-export enum Stat {
-	brawn,
-	wit,
-	will,
-	affluence
-}
-
-export enum Modifier {
-	twoHanded,
-	melee,
-	improvised
-}
-
-export enum ModifierType {
-	conditional,
-	effect
-}
-
-export enum RollType {
-	againstOdds
-}
+import { ZoneRange, Modifier, ModifierType, Stat, RollType } from '.';
+import type { Weapon } from '../types';
 
 export enum WeaponType {
 	hand,
@@ -41,7 +14,7 @@ export enum WeaponType {
 const WEAPON_TYPE = {
 	hand: {
 		name: WeaponType.hand,
-		range: Range.melee,
+		range: ZoneRange.melee,
 		attack: [Stat.brawn],
 		damageMod: 0,
 		initiative: 0,
@@ -57,14 +30,14 @@ const WEAPON_TYPE = {
 	},
 	heavy: {
 		name: WeaponType.heavy,
-		range: Range.melee,
+		range: ZoneRange.melee,
 		attack: [Stat.brawn],
 		damageMod: 1,
 		initiative: -1
 	},
 	light: {
 		name: WeaponType.light,
-		range: Range.melee,
+		range: ZoneRange.melee,
 		attack: [Stat.wit],
 		damageMod: -1,
 		initiative: 0,
@@ -80,7 +53,7 @@ const WEAPON_TYPE = {
 	},
 	long: {
 		name: WeaponType.long,
-		range: Range.short,
+		range: ZoneRange.short,
 		attack: [Stat.brawn],
 		damageMod: 0,
 		initiative: -1,
@@ -96,7 +69,7 @@ const WEAPON_TYPE = {
 	},
 	throwing: {
 		name: WeaponType.throwing,
-		range: Range.short,
+		range: ZoneRange.short,
 		attack: [Stat.wit, Stat.brawn],
 		damageMod: 0,
 		initiative: 0,
@@ -112,14 +85,14 @@ const WEAPON_TYPE = {
 	},
 	ranged: {
 		name: WeaponType.ranged,
-		range: Range.long,
+		range: ZoneRange.long,
 		attack: [Stat.wit],
 		damageMod: 0,
 		initiative: 0
 	},
 	improvised: {
 		name: WeaponType.improvised,
-		range: Range.melee,
+		range: ZoneRange.melee,
 		attack: [Stat.brawn],
 		damageMod: -2, // TODO: change to half damage
 		initiative: 0,

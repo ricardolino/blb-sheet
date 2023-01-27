@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { WEAPONS, Range, WeaponType } from '../lib/constants';
-	import type { Weapon } from "../lib/types";
+	import { WEAPONS, AFFLICTIONS, ZoneRange, WeaponType } from '$lib/constants';
+	import type { Weapon, Item } from "$lib/types";
 
-	import Attribute from '../lib/Attribute.svelte';
-	import ItemList from '../lib/ItemList.svelte';
+	import Attribute from '$lib/Attribute.svelte';
+	import ItemList from '$lib/ItemList.svelte';
 
 	let info = {
 		playerName: "",
@@ -30,8 +30,12 @@
 		haveShield: false,
 	};
 
+	function consequencesResult({ name }: Item) {
+		return name;
+	}
+
 	function weaponResult ({ name, type }: Weapon) {
-		return `${name} (${WeaponType[type.name]} | ${Range[type.range]})`;
+		return `${name} (${WeaponType[type.name]} | ${ZoneRange[type.range]})`;
 	}
 </script>
 
@@ -68,23 +72,23 @@
 <section class="container">
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList name="Advancements" list={[]} options={[]} />
+			<ItemList name="Advancements" options={[]} />
 		</div>
 		<div class="half">
-			<ItemList name="Consequences" list={[]} options={[]} />			
+			<ItemList name="Consequences" options={AFFLICTIONS} handleResult={consequencesResult} />			
 		</div>
 	</div>
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList name="Equipment" list={[]} options={[]} />
+			<ItemList name="Equipments" options={[]} />
 		</div>
 		<div class="half">
-			<ItemList name="Treasure" list={[]} options={[]} />	
+			<ItemList name="Treasures" options={[]} />	
 		</div>	
 	</div>
 	<div class="flex">
 		<div class="half">
-			<ItemList name="Weapons" list={[]} options={WEAPONS} handleResult={weaponResult} />	
+			<ItemList name="Weapons" options={WEAPONS} handleResult={weaponResult} />	
 		</div>
 	</div>
 </section>

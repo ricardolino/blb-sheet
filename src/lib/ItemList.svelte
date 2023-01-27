@@ -2,12 +2,12 @@
 	import type { Item } from './types';
 
 	export let name: Item['name'];
-	export let list: Item[];
 	export let options: Item[];
 
 	export let handleResult = (result: any) => String;
 
 	let search = '';
+	let list: Item[] = [];
 	let results: Item[] = [];
 	let isVisible = false;
 
@@ -74,6 +74,7 @@
 
 	.title {
 		margin: 0;
+		font-family:'Times New Roman', Times, serif;
 	}
 
 	.search {
