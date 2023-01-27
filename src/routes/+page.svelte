@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WEAPONS, AFFLICTIONS, ZoneRange, WeaponType } from '$lib/constants';
+	import { WEAPONS, AFFLICTIONS, ZoneRange, WeaponType, ADVANCEMENTS, EQUIPMENTS, DEFAULT_EQUIPMENTS } from '$lib/constants';
 	import type { Weapon, Item } from "$lib/types";
 
 	import Attribute from '$lib/Attribute.svelte';
@@ -30,7 +30,7 @@
 		haveShield: false,
 	};
 
-	function consequencesResult({ name }: Item) {
+	function defaultResult({ name }: Item) {
 		return name;
 	}
 
@@ -72,15 +72,15 @@
 <section class="container">
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList name="Advancements" options={[]} />
+			<ItemList name="Advancements" options={ADVANCEMENTS} handleResult={defaultResult} />
 		</div>
 		<div class="half">
-			<ItemList name="Consequences" options={AFFLICTIONS} handleResult={consequencesResult} />			
+			<ItemList name="Consequences" options={AFFLICTIONS} handleResult={defaultResult} />			
 		</div>
 	</div>
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList name="Equipments" options={[]} />
+			<ItemList name="Equipments" defaultList={DEFAULT_EQUIPMENTS} options={EQUIPMENTS} handleResult={defaultResult} />
 		</div>
 		<div class="half">
 			<ItemList name="Treasures" options={[]} />	

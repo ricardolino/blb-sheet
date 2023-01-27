@@ -2,12 +2,13 @@
 	import type { Item } from './types';
 
 	export let name: Item['name'];
+	export let defaultList: Item[] = [];
 	export let options: Item[];
 
 	export let handleResult = (result: any) => String;
 
 	let search = '';
-	let list: Item[] = [];
+	let list: Item[] = [...defaultList];
 	let results: Item[] = [];
 	let isVisible = false;
 
@@ -33,7 +34,7 @@
 	}
 
 	$: if (search.length >= 2) {
-		results = options.filter(({ name }) => name.includes(search));
+		results = options.filter(({ name }) => name.toLowerCase().includes(search));
 	} else {
 		results = options;
 	}
