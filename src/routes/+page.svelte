@@ -83,7 +83,9 @@
 		</div>	
 	</div>
 	<div class="flex">
-		<ItemList name="Weapons" list={[]} options={WEAPONS} handleResult={weaponResult} />	
+		<div class="half">
+			<ItemList name="Weapons" list={[]} options={WEAPONS} handleResult={weaponResult} />	
+		</div>
 	</div>
 </section>
 
@@ -104,7 +106,7 @@
 		display: flex;
 		flex: auto;
 		justify-content: space-between;
-		gap: 1rem;
+		gap: 0.5rem;
 		width: 50%;
 	}
 

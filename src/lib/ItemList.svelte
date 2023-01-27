@@ -9,6 +9,7 @@
 
 	let search = '';
 	let results: Item[] = [];
+	let isVisible = false;
 
 	function deleteItem(item: Item) {
 		const index = list.findIndex(({ name }) => name === item.name);
@@ -19,11 +20,22 @@
 	function addItem(item: Item) {
 		list = [...list, item];
 		search = '';
-		results = [];
 	}
 
-	$: if (search.length >= 3) {
+	function toggleResultVisibility() {
+		if (isVisible) {
+			return setTimeout(() => {
+				isVisible = false;
+			}, 200);
+		}
+
+		isVisible = true;
+	}
+
+	$: if (search.length >= 2) {
 		results = options.filter(({ name }) => name.includes(search));
+	} else {
+		results = options;
 	}
 </script>
 
@@ -37,13 +49,14 @@
 			</li>
 		{/each}
 		<li>
-			<input class="search" bind:value={search} placeholder="search for..." />
-			{#if search.length >= 3 && results.length > 0}
+			<input class="search" bind:value={search} placeholder="search for..." on:focus={toggleResultVisibility} on:blur={toggleResultVisibility} />
+			{isVisible}
+			{#if isVisible || search }
 				<ul class="results">
 					{#each results as result}
 						<li>
 							<span>{handleResult(result)}</span>
-							<button disabled={!search} on:click={() => addItem(result)}>+</button>
+							<button on:click={() => addItem(result)}>+</button>
 						</li>
 					{/each}
 				</ul>
@@ -80,10 +93,16 @@
     	flex-direction: column;
     	gap: 0.5rem;
 		margin: 0;
-
 	}
 
 	.results {
 		margin-top: 0.5rem;
+		display: flex;
+	}
+
+	.results li {
+		height: 2rem;
+		display: flex;
+		align-items: center;
 	}
 </style>

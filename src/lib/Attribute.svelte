@@ -22,8 +22,9 @@
 		padding: 0;
 		text-align: center;
 		font-size: 2rem;
-		width: 100%;
+		width: 80%;
 		transform: translateX(8px);
+		background: transparent;
 	}
 
 	input:focus {
@@ -32,10 +33,10 @@
 
 	.wrapper {
 		border: 2px double;
-		padding: 0.5rem;
+		padding: 0.3rem;
 		display: flex;
 		flex-direction: column;
-		min-width: 4.5rem;
+		min-width: 3.5rem;
 		border-radius: 0.1rem;
 	}
 
