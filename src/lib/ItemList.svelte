@@ -50,7 +50,6 @@
 		{/each}
 		<li>
 			<input class="search" bind:value={search} placeholder="search for..." on:focus={toggleResultVisibility} on:blur={toggleResultVisibility} />
-			{isVisible}
 			{#if isVisible || search }
 				<ul class="results">
 					{#each results as result}
