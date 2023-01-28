@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WEAPONS, AFFLICTIONS, ZoneRange, WeaponType, ADVANCEMENTS, EQUIPMENTS, DEFAULT_EQUIPMENTS } from '$lib/constants';
+	import { WEAPONS, AFFLICTIONS, ZoneRange, WeaponType, ADVANCEMENTS, EQUIPMENTS, ItemListType } from '$lib/constants';
 	import type { Weapon, Item } from "$lib/types";
 
 	import Attribute from '$lib/Attribute.svelte';
@@ -72,23 +72,23 @@
 <section class="container">
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList name="Advancements" options={ADVANCEMENTS} handleResult={defaultResult} />
+			<ItemList type={ItemListType.advancement} options={ADVANCEMENTS} />
 		</div>
 		<div class="half">
-			<ItemList name="Consequences" options={AFFLICTIONS} handleResult={defaultResult} />			
+			<ItemList type={ItemListType.consequence} options={AFFLICTIONS} />			
 		</div>
 	</div>
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList name="Equipments" defaultList={DEFAULT_EQUIPMENTS} options={EQUIPMENTS} handleResult={defaultResult} />
+			<ItemList type={ItemListType.equipment} options={EQUIPMENTS} />
 		</div>
 		<div class="half">
-			<ItemList name="Treasures" options={[]} />	
+			<ItemList type={ItemListType.treasure} options={[]} />	
 		</div>	
 	</div>
 	<div class="flex">
 		<div class="half">
-			<ItemList name="Weapons" options={WEAPONS} handleResult={weaponResult} />	
+			<ItemList type={ItemListType.weapon} options={WEAPONS} />	
 		</div>
 	</div>
 </section>

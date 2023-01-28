@@ -1,4 +1,4 @@
-import type { Range, Stat, Modifier, WeaponType as EnumWeaponType } from './constants';
+import type { ZoneRange, Stat, Modifier, WeaponType as EnumWeaponType } from './constants';
 
 export interface Item {
 	id: number;
@@ -7,7 +7,7 @@ export interface Item {
 
 export interface WeaponType {
 	name: EnumWeaponType;
-	range: Range;
+	range: ZoneRange;
 	attack: Stat[];
 	damageMod: number;
 	initiative: number;

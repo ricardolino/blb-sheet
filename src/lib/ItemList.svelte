@@ -1,20 +1,25 @@
 <script lang="ts">
-	import type { Item } from './types';
+	import type { SvelteComponentTyped } from 'svelte';
+
+	import type { Item } from '$lib/types';
+	import { ItemListType } from "$lib/constants";
+	import WeaponResult from "$lib/WeaponResult.svelte";
+	import AdvancementResult from './AdvancementResult.svelte';
+	import ConsequenceResult from './ConsequenceResult.svelte';
+	import TreasureResult from './TreasureResult.svelte';
+	import EquipmentResult from './EquipmentResult.svelte';
 
 	export let name: Item['name'];
-	export let defaultList: Item[] = [];
 	export let options: Item[];
-
-	export let handleResult = (result: any) => String;
+	export let type: ItemListType;
 
 	let search = '';
-	let list: Item[] = [...defaultList];
+	let list: Item[] = [];
 	let results: Item[] = [];
+	let component: SvelteComponentTyped<WeaponResult>;
 	let isVisible = false;
 
-	function deleteItem(item: Item) {
-		const index = list.findIndex(({ name }) => name === item.name);
-
+	function deleteItem(index: number) {
 		list = list.filter((_, i) => i != index);
 	}
 
@@ -27,10 +32,28 @@
 		if (isVisible) {
 			return setTimeout(() => {
 				isVisible = false;
-			}, 200);
+			}, 300);
 		}
 
 		isVisible = true;
+	}
+
+	$: switch(type) {
+		case ItemListType.weapon:
+			component = WeaponResult;
+			break;
+		case ItemListType.advancement:
+			component = AdvancementResult;
+			break;
+		case ItemListType.consequence:
+			component = ConsequenceResult;
+			break;
+		case ItemListType.treasure:
+			component = TreasureResult;
+			break;
+		case ItemListType.equipment:
+			component = EquipmentResult;
+			break;
 	}
 
 	$: if (search.length >= 2) {
@@ -41,28 +64,23 @@
 </script>
 
 <div class="itemList">
-	<h2 class="title">{name}</h2>
+	<h2 class="title">{ItemListType[type]}</h2>
 	<ul class="list">
-		{#each list as item}
+		{#each list as item, i}
 			<li>
 				{item.name}
-				<button on:click={() => deleteItem(item)}>x</button>
+				<button on:click={() => deleteItem(i)}>x</button>
 			</li>
 		{/each}
-		<li>
-			<input class="search" bind:value={search} placeholder="search for..." on:focus={toggleResultVisibility} on:blur={toggleResultVisibility} />
-			{#if isVisible || search }
-				<ul class="results">
-					{#each results as result}
-						<li>
-							<span>{handleResult(result)}</span>
-							<button on:click={() => addItem(result)}>+</button>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		</li>
-	</ul>	
+	</ul>
+	<input class="search" bind:value={search} placeholder="search for..." on:focus={toggleResultVisibility} on:blur={toggleResultVisibility} />
+	{#if isVisible || search }
+		<ul class="results">
+			{#each results as result }
+				<svelte:component this={component} item={result} addItem={addItem} />
+			{/each}
+		</ul>
+	{/if}
 </div>
 
 <style>
@@ -99,11 +117,5 @@
 	.results {
 		margin-top: 0.5rem;
 		display: flex;
-	}
-
-	.results li {
-		height: 2rem;
-		display: flex;
-		align-items: center;
 	}
 </style>

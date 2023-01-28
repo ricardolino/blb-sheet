@@ -25,3 +25,11 @@ export enum ModifierType {
 export enum RollType {
 	againstOdds
 }
+
+export enum ItemListType {
+	advancement,
+	consequence,
+	equipment,
+	treasure,
+	weapon
+}
