@@ -32,14 +32,8 @@
 		search = '';
 	}
 
-	function toggleResultVisibility() {
-		if (isVisible) {
-			return setTimeout(() => {
-				isVisible = false;
-			}, 300);
-		}
-
-		isVisible = true;
+	function toggleVisibility() {
+		setTimeout(() => (isVisible = !isVisible), 300);
 	}
 
 	$: if (search.length >= 2) {
@@ -60,8 +54,8 @@
 		class="search"
 		bind:value={search}
 		placeholder="search for..."
-		on:focus={toggleResultVisibility}
-		on:blur={toggleResultVisibility}
+		on:focus={toggleVisibility}
+		on:blur={toggleVisibility}
 	/>
 	{#if isVisible || search}
 		<ul class="results">
