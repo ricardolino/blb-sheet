@@ -1,15 +1,14 @@
 <script lang="ts">
-	import { WEAPONS, AFFLICTIONS, ZoneRange, WeaponType, ADVANCEMENTS, EQUIPMENTS, ItemListType } from '$lib/constants';
-	import type { Weapon, Item } from "$lib/types";
+	import { WEAPONS, AFFLICTIONS, ADVANCEMENTS, EQUIPMENTS, ItemType } from '$lib/constants';
 
 	import Attribute from '$lib/Attribute.svelte';
-	import ItemList from '$lib/ItemList.svelte';
+	import List from '$lib/List.svelte';
 
 	let info = {
-		playerName: "",
-		characterName: "",
-		archetype: "",
-		experience: 0,
+		playerName: '',
+		characterName: '',
+		archetype: '',
+		experience: 0
 	};
 
 	let stats = {
@@ -19,24 +18,16 @@
 		affluence: 0,
 		vigor: {
 			current: 6,
-			maximum: 6,
+			maximum: 6
 		},
 		grip: 4,
-		armor: 7,
+		armor: 7
 	};
 
 	let status = {
 		inFight: false,
-		haveShield: false,
+		haveShield: false
 	};
-
-	function defaultResult({ name }: Item) {
-		return name;
-	}
-
-	function weaponResult ({ name, type }: Weapon) {
-		return `${name} (${WeaponType[type.name]} | ${ZoneRange[type.range]})`;
-	}
 </script>
 
 <section class="head container">
@@ -50,7 +41,7 @@
 			<Attribute name="EXP" value={info.experience} min={0} max={8} />
 		</div>
 	</div>
-	
+
 	<div class="flex">
 		<div class="half">
 			<Attribute name="Brawn" value={stats.brawn} />
@@ -60,35 +51,35 @@
 		</div>
 		<div class="half">
 			<div class="vigor">
-				<Attribute name="Current" value={stats.vigor.current} min={1} />
+				<Attribute name="Current" value={stats.vigor.current} min={1} max={stats.vigor.maximum} />
 				<Attribute name="Max" value={stats.vigor.maximum} min={1} />
 			</div>
 			<Attribute name="Grip" value={stats.grip} min={1} />
 			<Attribute name="Armor" value={stats.armor} min={7} />
 		</div>
-	</div>	
+	</div>
 </section>
 
 <section class="container">
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList type={ItemListType.advancement} options={ADVANCEMENTS} />
+			<List type={ItemType.advancement} options={ADVANCEMENTS} />
 		</div>
 		<div class="half">
-			<ItemList type={ItemListType.consequence} options={AFFLICTIONS} />			
+			<List type={ItemType.consequence} options={AFFLICTIONS} />
 		</div>
 	</div>
 	<div class="flex spacer">
 		<div class="half">
-			<ItemList type={ItemListType.equipment} options={EQUIPMENTS} />
+			<List type={ItemType.equipment} options={EQUIPMENTS} />
 		</div>
 		<div class="half">
-			<ItemList type={ItemListType.treasure} options={[]} />	
-		</div>	
+			<List type={ItemType.treasure} options={[]} />
+		</div>
 	</div>
 	<div class="flex">
 		<div class="half">
-			<ItemList type={ItemListType.weapon} options={WEAPONS} />	
+			<List type={ItemType.weapon} options={WEAPONS} />
 		</div>
 	</div>
 </section>
@@ -96,8 +87,8 @@
 <style>
 	.container {
 		max-width: 864px;
-    	margin-left: auto;
-    	margin-right: auto;
+		margin-left: auto;
+		margin-right: auto;
 		margin-bottom: 2rem;
 	}
 

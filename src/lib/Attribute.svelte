@@ -8,9 +8,6 @@
 <label class="wrapper">
 	<div class="field">
 		<input type="number" bind:value {min} {max} />
-		<span class="max"
-			>{#if max}\ {max}{/if}</span
-		>
 	</div>
 	<span class="label">{name}</span>
 </label>
@@ -44,13 +41,6 @@
 		display: flex;
 		justify-content: center;
 		position: relative;
-	}
-
-	.max {
-		display: inline-block;
-		position: absolute;
-		font-size: 0.7rem;
-		transform: translateX(1.5rem);
 	}
 
 	.label {

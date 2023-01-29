@@ -1,5 +1,5 @@
-import { ZoneRange, Modifier, ModifierType, Stat, RollType } from '.';
-import type { Weapon } from '../types';
+import { ZoneRange, Modifier, ModifierType, Stat, RollType } from '$lib/constants';
+import type { Weapon } from '$lib/types';
 
 export enum WeaponType {
 	hand,

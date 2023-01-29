@@ -26,7 +26,7 @@ export enum RollType {
 	againstOdds
 }
 
-export enum ItemListType {
+export enum ItemType {
 	advancement,
 	consequence,
 	equipment,
