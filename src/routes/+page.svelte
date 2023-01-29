@@ -61,27 +61,11 @@
 </section>
 
 <section class="container">
-	<div class="flex spacer">
-		<div class="half">
-			<List type={ItemType.advancement} options={ADVANCEMENTS} />
-		</div>
-		<div class="half">
-			<List type={ItemType.consequence} options={AFFLICTIONS} />
-		</div>
-	</div>
-	<div class="flex spacer">
-		<div class="half">
-			<List type={ItemType.equipment} options={EQUIPMENTS} />
-		</div>
-		<div class="half">
-			<List type={ItemType.treasure} options={[]} />
-		</div>
-	</div>
-	<div class="flex">
-		<div class="half">
-			<List type={ItemType.weapon} options={WEAPONS} />
-		</div>
-	</div>
+	<List type={ItemType.advancement} options={ADVANCEMENTS} />
+	<List type={ItemType.consequence} options={AFFLICTIONS} />
+	<List type={ItemType.equipment} options={EQUIPMENTS} />
+	<List type={ItemType.treasure} options={[]} />
+	<List type={ItemType.weapon} options={WEAPONS} />
 </section>
 
 <style>

@@ -2,22 +2,13 @@
 	import type { Item } from '../types';
 
 	export let item = {} as Item;
-	export let onClick = () => undefined;
+	export let button = '';
+	export let handleClick = () => undefined;
 
 	function handleResult(item: Item) {
 		return item.name;
 	}
 </script>
 
-<li class="result">
-	<span>{handleResult(item)}</span>
-	<button on:click={onClick}>+</button>
-</li>
-
-<style>
-	.result {
-		height: 2rem;
-		display: flex;
-		align-items: center;
-	}
-</style>
+<span class="title">{handleResult(item)}</span>
+<button class="button" on:click={handleClick}>{button}</button>
