@@ -33,7 +33,7 @@
 		"vitest": "^0.25.3"
 	},
 	"lint-staged": {
-		"*.{svelte,ts}": ["format --fix", "lint"]
+		"*.{svelte,ts}": ["npm run format --fix", "npm run lint"]
 	},
 	"type": "module"
 }
