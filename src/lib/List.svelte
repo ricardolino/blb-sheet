@@ -3,7 +3,7 @@
 
 	import type { Item } from '$lib/types';
 	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ItemType } from '$lib/constants';
-	import { Advancement, Consequence, Equipment, Treasure, Weapon } from '$lib/Item/index.js';
+	import { Advancement, Consequence, Equipment, Treasure, Weapon } from '$lib/Item';
 
 	export let type: ItemType;
 

@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { Item } from '../types';
 
-	export let item = {} as Item;
-	export let button = '';
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	export let handleClick = () => {};
+	export let item: Item;
+	export let button: string;
+	export let handleClick: () => void;
 
 	function handleResult(item: Item) {
 		return item.name;
