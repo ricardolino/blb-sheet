@@ -1,27 +1,44 @@
 <script lang="ts">
+	import { diff } from '$lib/helper';
+
 	import type { Item } from '$lib/types';
-	import { ItemType } from '$lib/constants';
+	import { WEAPONS, ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, ItemType } from '$lib/constants';
+
 	import Weapon from '$lib/Item/Weapon.svelte';
 	import Advancement from '$lib/Item/Advancement.svelte';
 	import Consequence from '$lib/Item/Consequence.svelte';
 	import Treasure from '$lib/Item/Treasure.svelte';
 	import Equipment from '$lib/Item/Equipment.svelte';
 
-	export let options: Item[];
-	export let type: ItemType = ItemType.weapon;
+	export let type: ItemType;
 
 	let search = '';
 	let list: Item[] = [];
 	let results: Item[] = [];
 	let isVisible = false;
-	let contentOptions = [
-		{ format: ItemType.weapon, component: Weapon },
-		{ format: ItemType.advancement, component: Advancement },
-		{ format: ItemType.consequence, component: Consequence },
-		{ format: ItemType.treasure, component: Treasure },
-		{ format: ItemType.equipment, component: Equipment }
+
+	const LIST_OPTIONS = [
+		{ format: ItemType.weapon, component: Weapon, options: WEAPONS, isRepeatable: true },
+		{
+			format: ItemType.advancement,
+			component: Advancement,
+			options: ADVANCEMENTS,
+			isRepeatable: false
+		},
+		{
+			format: ItemType.consequence,
+			component: Consequence,
+			options: AFFLICTIONS,
+			isRepeatable: false
+		},
+		{ format: ItemType.treasure, component: Treasure, options: [], isRepeatable: true },
+		{ format: ItemType.equipment, component: Equipment, options: EQUIPMENTS, isRepeatable: true }
 	];
-	let component = contentOptions.find((content) => content.format == type).component;
+	const {
+		component,
+		options = [],
+		isRepeatable
+	} = LIST_OPTIONS.find((content) => content.format == type) || {};
 
 	function clearSearch() {
 		search = '';
@@ -43,10 +60,14 @@
 		}, 200);
 	}
 
+	function getOptions(options: Item[], list: Item[]) {
+		return isRepeatable ? options : diff<Item>(options, list);
+	}
+
 	$: if (search.length >= 2) {
-		results = options.filter(({ name }) => name.toLowerCase().includes(search));
+		results = getOptions(options, list).filter(({ name }) => name.toLowerCase().includes(search));
 	} else {
-		results = options;
+		results = getOptions(options, list);
 	}
 </script>
 

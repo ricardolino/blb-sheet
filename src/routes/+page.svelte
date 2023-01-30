@@ -61,11 +61,11 @@
 </section>
 
 <section class="container">
-	<List type={ItemType.advancement} options={ADVANCEMENTS} />
-	<List type={ItemType.consequence} options={AFFLICTIONS} />
-	<List type={ItemType.equipment} options={EQUIPMENTS} />
-	<List type={ItemType.treasure} options={[]} />
-	<List type={ItemType.weapon} options={WEAPONS} />
+	<List type={ItemType.advancement} />
+	<List type={ItemType.consequence} />
+	<List type={ItemType.equipment} />
+	<List type={ItemType.treasure} />
+	<List type={ItemType.weapon} />
 </section>
 
 <style>
