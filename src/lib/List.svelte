@@ -2,13 +2,8 @@
 	import { diff } from '$lib/helper';
 
 	import type { Item } from '$lib/types';
-	import { WEAPONS, ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, ItemType } from '$lib/constants';
-
-	import Weapon from '$lib/Item/Weapon.svelte';
-	import Advancement from '$lib/Item/Advancement.svelte';
-	import Consequence from '$lib/Item/Consequence.svelte';
-	import Treasure from '$lib/Item/Treasure.svelte';
-	import Equipment from '$lib/Item/Equipment.svelte';
+	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ItemType } from '$lib/constants';
+	import { Advancement, Consequence, Equipment, Treasure, Weapon } from '$lib/Item/index.js';
 
 	export let type: ItemType;
 
@@ -18,26 +13,16 @@
 	let isVisible = false;
 
 	const LIST_OPTIONS = [
-		{ format: ItemType.weapon, component: Weapon, options: WEAPONS, isRepeatable: true },
-		{
-			format: ItemType.advancement,
-			component: Advancement,
-			options: ADVANCEMENTS,
-			isRepeatable: false
-		},
-		{
-			format: ItemType.consequence,
-			component: Consequence,
-			options: AFFLICTIONS,
-			isRepeatable: false
-		},
+		{ format: ItemType.advancement, component: Advancement, options: ADVANCEMENTS },
+		{ format: ItemType.consequence, component: Consequence, options: AFFLICTIONS },
+		{ format: ItemType.equipment, component: Equipment, options: EQUIPMENTS, isRepeatable: true },
 		{ format: ItemType.treasure, component: Treasure, options: [], isRepeatable: true },
-		{ format: ItemType.equipment, component: Equipment, options: EQUIPMENTS, isRepeatable: true }
+		{ format: ItemType.weapon, component: Weapon, options: WEAPONS, isRepeatable: true }
 	];
 	const {
 		component,
 		options = [],
-		isRepeatable
+		isRepeatable = false
 	} = LIST_OPTIONS.find((content) => content.format == type) || {};
 
 	function clearSearch() {
