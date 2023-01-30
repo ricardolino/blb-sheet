@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ItemType } from '$lib/constants';
+	import { ListType } from '$lib/constants';
 
 	import Attribute from '$lib/Attribute.svelte';
 	import List from '$lib/List.svelte';
@@ -61,11 +61,11 @@
 </section>
 
 <section class="container">
-	<List type={ItemType.advancement} />
-	<List type={ItemType.consequence} />
-	<List type={ItemType.equipment} />
-	<List type={ItemType.treasure} />
-	<List type={ItemType.weapon} />
+	<List type={ListType.advancement} />
+	<List type={ListType.consequence} />
+	<List type={ListType.equipment} />
+	<List type={ListType.treasure} />
+	<List type={ListType.weapon} />
 </section>
 
 <style>

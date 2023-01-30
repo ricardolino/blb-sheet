@@ -2,10 +2,10 @@
 	import { diff } from '$lib/helper';
 
 	import type { Item } from '$lib/types';
-	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ItemType } from '$lib/constants';
-	import { Advancement, Consequence, Equipment, Treasure, Weapon } from '$lib/Item';
+	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ListType } from '$lib/constants';
+	import { WithDetails, Equipment, Treasure, Weapon } from '$lib/Item';
 
-	export let type: ItemType;
+	export let type: ListType;
 
 	let search = '';
 	let list: Item[] = [];
@@ -13,11 +13,11 @@
 	let isVisible = false;
 
 	const LIST_OPTIONS = [
-		{ format: ItemType.advancement, component: Advancement, options: ADVANCEMENTS },
-		{ format: ItemType.consequence, component: Consequence, options: AFFLICTIONS },
-		{ format: ItemType.equipment, component: Equipment, options: EQUIPMENTS, isRepeatable: true },
-		{ format: ItemType.treasure, component: Treasure, options: [], isRepeatable: true },
-		{ format: ItemType.weapon, component: Weapon, options: WEAPONS, isRepeatable: true }
+		{ format: ListType.advancement, component: WithDetails, options: ADVANCEMENTS },
+		{ format: ListType.consequence, component: WithDetails, options: AFFLICTIONS },
+		{ format: ListType.equipment, component: Equipment, options: EQUIPMENTS, isRepeatable: true },
+		{ format: ListType.treasure, component: Treasure, options: [], isRepeatable: true },
+		{ format: ListType.weapon, component: Weapon, options: WEAPONS, isRepeatable: true }
 	];
 	const {
 		component,
@@ -38,11 +38,12 @@
 		clearSearch();
 	}
 
-	function toggleVisibility() {
-		setTimeout(() => {
-			clearSearch();
-			isVisible = !isVisible;
-		}, 200);
+	function show() {
+		isVisible = true;
+	}
+
+	function hide() {
+		isVisible = false;
 	}
 
 	function getOptions(options: Item[], list: Item[]) {
@@ -58,16 +59,13 @@
 
 <div class="wrapper">
 	<div class="head">
-		<h2 class="title">{ItemType[type]}s</h2>
+		<h2 class="title">{ListType[type]}s</h2>
 		<div class="fieldset">
-			<input
-				class="search"
-				bind:value={search}
-				placeholder="search for..."
-				on:focus={toggleVisibility}
-				on:blur={toggleVisibility}
-			/>
-			{#if results.length > 0 && (isVisible || search)}
+			{#if isVisible}
+				<div class="overlay" on:click={hide} on:keydown={hide} />
+			{/if}
+			<input class="search" bind:value={search} placeholder="search for..." on:focus={show} />
+			{#if results.length > 0 && (isVisible || search.length >= 2)}
 				<ul class="list fixed">
 					{#each results as item}
 						<li class="item">
@@ -127,6 +125,17 @@
 		position: relative;
 	}
 
+	.overlay {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		cursor: pointer;
+		z-index: 1;
+		background: rgba(0, 0, 0, 0.1);
+	}
+
 	.search {
 		font-size: 1rem;
 		box-sizing: border-box;
@@ -136,11 +145,14 @@
 		border: 1px solid #555;
 	}
 
+	.search:focus {
+		position: relative;
+		z-index: 1;
+	}
+
 	.list {
 		padding: 0;
 		list-style: none;
-		display: flex;
-		flex-direction: column;
 		margin: 0;
 		width: 100%;
 		gap: 0.5rem;
@@ -148,11 +160,13 @@
 
 	.list.full {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
 		margin-top: 0.5rem;
 	}
 
 	.list.fixed {
+		display: flex;
+		flex-direction: column;
 		position: absolute;
 		top: 2rem;
 		background: white;
@@ -168,6 +182,7 @@
 	.item {
 		line-height: 2rem;
 		display: flex;
+		position: relative;
 	}
 
 	.list.fixed .item:nth-child(even) {
@@ -182,5 +197,6 @@
 	.list .item :global(.button) {
 		width: 2rem;
 		height: 2rem;
+		cursor: pointer;
 	}
 </style>

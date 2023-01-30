@@ -1,4 +1,11 @@
-import type { ZoneRange, Stat, Modifier, WeaponType as EnumWeaponType } from '$lib/constants';
+import type {
+	ZoneRange,
+	Stat,
+	Modifier,
+	WeaponType as EnumWeaponType,
+	AdvancementType as EnumAdvancementType,
+	AfflictionType as EnumAfflictionType
+} from '$lib/constants';
 
 export interface Item {
 	id: number;
@@ -21,4 +28,12 @@ export interface Weapon extends Item {
 	type: WeaponType;
 }
 
-export type HandleResult = (result: Item | Weapon) => string;
+export interface Advancement extends Item {
+	type: EnumAdvancementType[];
+	description: string;
+}
+
+export interface Consequence extends Item {
+	type: EnumAfflictionType[];
+	description: string;
+}
