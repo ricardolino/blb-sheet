@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WEAPONS, AFFLICTIONS, ADVANCEMENTS, EQUIPMENTS, ItemType } from '$lib/constants';
+	import { ItemType } from '$lib/constants';
 
 	import Attribute from '$lib/Attribute.svelte';
 	import List from '$lib/List.svelte';

@@ -3,7 +3,8 @@
 
 	export let item = {} as Item;
 	export let button = '';
-	export let handleClick = () => undefined;
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	export let handleClick = () => {};
 
 	function handleResult(item: Item) {
 		return item.name;
