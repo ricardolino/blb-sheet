@@ -41,6 +41,9 @@
 		line-height: normal;
 		z-index: 1;
 		padding: 0.5rem;
+		position: absolute;
+		border: 1px solid #555;
+		box-sizing: border-box;
 	}
 
 	.title.open:hover {
