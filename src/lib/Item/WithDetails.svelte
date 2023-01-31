@@ -6,16 +6,16 @@
 	export let button: string;
 	export let handleClick: () => void;
 
+	type ItemType = AdvancementType | AfflictionType;
+
 	let isVisible = false;
 
 	function toggleVisibility() {
 		isVisible = !isVisible;
 	}
 
-	function handleResult(item: Item) {
-		return `${item.name} (${item.type
-			.map((t: AdvancementType & AfflictionType) => t)
-			.join(' | ')})`;
+	function handleResult(type: ItemType[]) {
+		return type.join(' | ');
 	}
 </script>
 
@@ -25,10 +25,9 @@
 	on:click={toggleVisibility}
 	on:keydown={toggleVisibility}
 >
-	{handleResult(item)}
-	{#if isVisible}
-		<span class="description">{item.description}</span>
-	{/if}
+	<span class="name">{item.name}</span>
+	<span class="type">({handleResult(item.type)})</span>
+	<span class="description">{item.description}</span>
 </span>
 <button class="button" on:click={handleClick}>{button}</button>
 
@@ -37,18 +36,37 @@
 		cursor: help;
 	}
 
+	.title.open {
+		background: #f6f6f6;
+		line-height: normal;
+		z-index: 1;
+		padding: 0.5rem;
+	}
+
 	.title.open:hover {
 		cursor: alias;
 	}
 
-	.description {
+	.title .type,
+	.title .description {
+		display: none;
+	}
+
+	.title.open .name {
+		font-weight: bold;
+	}
+
+	.title.open .type {
+		font-style: italic;
+	}
+
+	.title.open .type,
+	.title.open .description {
 		display: block;
-		background: #f6f6f6;
-		line-height: normal;
-		z-index: 1;
-		border: 1px solid #555;
-		padding: 0.5rem;
 		font-size: small;
+	}
+
+	.title.open .description {
 		margin-top: 0.5rem;
 	}
 </style>

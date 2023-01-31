@@ -23,11 +23,7 @@
 		component,
 		options = [],
 		isRepeatable = false
-	} = LIST_OPTIONS.find((content) => content.format == type) || {};
-
-	function clearSearch() {
-		search = '';
-	}
+	} = LIST_OPTIONS.find(({ format }) => format == type) || {};
 
 	function deleteItem(index: number) {
 		list = list.filter((_, i) => i != index);
@@ -35,7 +31,7 @@
 
 	function addItem(item: Item) {
 		list = [...list, item];
-		clearSearch();
+		search = '';
 	}
 
 	function show() {

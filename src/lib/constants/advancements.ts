@@ -40,11 +40,11 @@ export const ADVANCEMENTS = [
 			'At the end of each Adventuring Day, the character can brew up to half their Will in Potions for 1 Grip each. When taking this Advancement, choose 2 Potion types they can brew: Amorphous, Aquatic, Blinking, Flamewreathed, Firebreathing, Hex-Proof, Nimble, Shadowclad or Woundknitting. Concoctionist can be taken multiple times, learning 2 Potion types each time.'
 	},
 	{
-		name: 'Chemiker’s Charges',
+		name: "Chemiker's Charges",
 		id: 4,
 		type: [AdvancementType.Devious, AdvancementType.Technical],
 		description:
-			'With a few hours’ work in a surface camp and access to appropriate equipment, the character can fashion one of the following Chemiker’s Charges: Jerrodine Fire: Popularized by Jerrodians clearing out giant rat nests. Fills the Zone with flames, setting every creature and flammable object aflame for D3 damage at the start of each turn per turn until doused. Dupontiane Gloop: Fashioned from gelatinous pine sap, this coats a Zone in sticky residue to slow movement, forcing creatures that try to move through or out of that Zone to make a Brawn Check or remain stationary. Calmyne Smoke Bombs: A grenade beloved by Calmyn’s crime families. Fills a Zone with thick smoke, rendering Observation Checks and Attacks made through or in it Against The Odds. A character with Chemiker’s Charges can either set a Charge with a fuse up to a minute long or throw it with an action to a Zone in short range. Either way, the effects last 1 minute. Charges expire 3 days after creation. Charges are volatile and may interact poorly with each other. When a character takes damage while carrying a charge, roll a D6. If the result is equal to or less than the number of Charges, they all explode.'
+			"With a few hours' work in a surface camp and access to appropriate equipment, the character can fashion one of the following Chemiker's Charges: Jerrodine Fire: Popularized by Jerrodians clearing out giant rat nests. Fills the Zone with flames, setting every creature and flammable object aflame for D3 damage at the start of each turn per turn until doused. Dupontiane Gloop: Fashioned from gelatinous pine sap, this coats a Zone in sticky residue to slow movement, forcing creatures that try to move through or out of that Zone to make a Brawn Check or remain stationary. Calmyne Smoke Bombs: A grenade beloved by Calmyn's crime families. Fills a Zone with thick smoke, rendering Observation Checks and Attacks made through or in it Against The Odds. A character with Chemiker's Charges can either set a Charge with a fuse up to a minute long or throw it with an action to a Zone in short range. Either way, the effects last 1 minute. Charges expire 3 days after creation. Charges are volatile and may interact poorly with each other. When a character takes damage while carrying a charge, roll a D6. If the result is equal to or less than the number of Charges, they all explode."
 	},
 	{
 		name: 'Ears of the Own',
@@ -57,31 +57,31 @@ export const ADVANCEMENTS = [
 		id: 6,
 		type: [AdvancementType.Basic],
 		description:
-			'The character pacts with a powerful extraplanar creature like a Cinderbeast, Herald or Beyonder, promising servitude in exchange for world-bending power. Immediately choose 2 more available Advancements as gifts from their patron. Make a note that they were gained from an Eldritch Pact and do not grant additional Vigour or Grip nor count towards requisite Advancements to become Titled. Touching such powerful beings’ minds adversely affects one’s health, granting a random Affliction, either chosen or rolled randomly. Eldritch Pacts always return to bite. Patrons may demand confusing or difficult favours, which must be fulfilled. Consequences for refusing can be dire, including but not limited to, additional Afflictions or Injuries, loss of Vigour or Grip, Stat reduction, revoking the Eldritch Pact’s Advancements or even death.'
+			"The character pacts with a powerful extraplanar creature like a Cinderbeast, Herald or Beyonder, promising servitude in exchange for world-bending power. Immediately choose 2 more available Advancements as gifts from their patron. Make a note that they were gained from an Eldritch Pact and do not grant additional Vigour or Grip nor count towards requisite Advancements to become Titled. Touching such powerful beings' minds adversely affects one's health, granting a random Affliction, either chosen or rolled randomly. Eldritch Pacts always return to bite. Patrons may demand confusing or difficult favours, which must be fulfilled. Consequences for refusing can be dire, including but not limited to, additional Afflictions or Injuries, loss of Vigour or Grip, Stat reduction, revoking the Eldritch Pact's Advancements or even death."
 	},
 	{
 		name: 'Extra Brawn',
 		id: 6,
 		type: [AdvancementType.Basic],
-		description: 'Increases the character’s Brawn by 1. Remember to recalculate Maximum Vigour.'
+		description: "Increases the character's Brawn by 1. Remember to recalculate Maximum Vigour."
 	},
 	{
 		name: 'Extra Grip',
 		id: 6,
 		type: [AdvancementType.Basic],
-		description: 'Increases the character’s Grip by 3.'
+		description: "Increases the character's Grip by 3."
 	},
 	{
 		name: 'Extra Will',
 		id: 6,
 		type: [AdvancementType.Basic],
-		description: 'Increases the character’s Will by 1.'
+		description: "Increases the character's Will by 1."
 	},
 	{
 		name: 'Extra Wit',
 		id: 6,
 		type: [AdvancementType.Basic],
-		description: 'Increases the character’s Wit by 1.'
+		description: "Increases the character's Wit by 1."
 	},
 	{
 		name: 'Eyes of the Hawk',
@@ -122,7 +122,7 @@ export const ADVANCEMENTS = [
 		id: 6,
 		type: [AdvancementType.Arcane, AdvancementType.Holy, AdvancementType.Druidic],
 		description:
-			'At the end of an Adventuring Day, spend any amount of Grip to receive cryptic visions from dreaming, stargazing or bone throwing. The more Grip spent, the less cryptic the Doomsayer’s description of the next Adventuring Day’s events is.'
+			"At the end of an Adventuring Day, spend any amount of Grip to receive cryptic visions from dreaming, stargazing or bone throwing. The more Grip spent, the less cryptic the Doomsayer's description of the next Adventuring Day's events is."
 	},
 	{
 		name: 'Knife From The Shadows',
@@ -139,11 +139,11 @@ export const ADVANCEMENTS = [
 			'For 1 Grip and an action, roll D3 + Will. Another character of your choice gains Vigour equal to the result.'
 	},
 	{
-		name: 'Marksman’s Aim',
+		name: "Marksman's Aim",
 		id: 6,
 		type: [AdvancementType.Martial, AdvancementType.Devious, AdvancementType.Druidic],
 		description:
-			'The character can take an action to line up a shot, examining their target and its movement. The following turn, they can make an Attack against their target with the Upper Hand using a Ranged Weapon, and ignoring any penalties of cover or obscuration. The Doomsayer may allow the use of Marksman’s Aim before combat starts, provided the character has time to do so, granting the Upper Hand on their first Attack.'
+			"The character can take an action to line up a shot, examining their target and its movement. The following turn, they can make an Attack against their target with the Upper Hand using a Ranged Weapon, and ignoring any penalties of cover or obscuration. The Doomsayer may allow the use of Marksman's Aim before combat starts, provided the character has time to do so, granting the Upper Hand on their first Attack."
 	},
 	{
 		name: 'Master of Deceit',
@@ -169,7 +169,7 @@ export const ADVANCEMENTS = [
 		id: 6,
 		type: [AdvancementType.Arcane, AdvancementType.Druidic],
 		description:
-			"When taking this Advancement, choose 2 supernatural senses that the character can activate from the following: Eyes of Cinder: Peer through nonsupernatural darkness as if there is low light. Herald's Gaze: See through less than 6 inches of a natural substance like dirt, stone or wood. Unnatural or man-made substances, such as metal, leather or glass are opaque. Fargone Taste: Taste a distant object as if it was in their mouth. Whispers of the Seer: Be able to hear distant conversations as if a whisper. Thermomancy: Know the exact temperature of a distant object without touching it. Stain of the Arcane: Tell if Arcane magic has been cast in an area, and the identity of the mage if the character has seen them cast a spell before. Spend 1 Grip to amplify the character’s normal senses with one of the supernatural abilities they possess for 5 minutes. This may grant them the Upper Hand on certain Observation Checks, or make Impossible Observation Checks possible. The process is disorientating and often disrupts other senses, so other Observation Checks not amplified by Otherwordly Perception are Against The Odds while active."
+			"When taking this Advancement, choose 2 supernatural senses that the character can activate from the following: Eyes of Cinder: Peer through nonsupernatural darkness as if there is low light. Herald's Gaze: See through less than 6 inches of a natural substance like dirt, stone or wood. Unnatural or man-made substances, such as metal, leather or glass are opaque. Fargone Taste: Taste a distant object as if it was in their mouth. Whispers of the Seer: Be able to hear distant conversations as if a whisper. Thermomancy: Know the exact temperature of a distant object without touching it. Stain of the Arcane: Tell if Arcane magic has been cast in an area, and the identity of the mage if the character has seen them cast a spell before. Spend 1 Grip to amplify the character's normal senses with one of the supernatural abilities they possess for 5 minutes. This may grant them the Upper Hand on certain Observation Checks, or make Impossible Observation Checks possible. The process is disorientating and often disrupts other senses, so other Observation Checks not amplified by Otherwordly Perception are Against The Odds while active."
 	},
 	{
 		name: 'Radiant Blade',
@@ -202,7 +202,7 @@ export const ADVANCEMENTS = [
 		id: 6,
 		type: [AdvancementType.Devious, AdvancementType.Arcane, AdvancementType.Bardic],
 		description:
-			'Spend 1 Grip to do one of the following: • Gain the Upper Hand on a Wit Check to hide. • Observation Checks to spot them are Against The Odds for 1 round. • Alter the character’s appearance (clothing, facial detail, hair, etc.) for 1 minute. These changes are visual only.'
+			"Spend 1 Grip to do one of the following: • Gain the Upper Hand on a Wit Check to hide. • Observation Checks to spot them are Against The Odds for 1 round. • Alter the character's appearance (clothing, facial detail, hair, etc.) for 1 minute. These changes are visual only."
 	},
 	{
 		name: 'Shieldwall',
