@@ -29,7 +29,9 @@
 	<span class="type">({handleResult(item.type)})</span>
 	<span class="description">{item.description}</span>
 </span>
-<button class="button" on:click={handleClick}>{button}</button>
+{#if !isVisible}
+	<button class="button" on:click={handleClick}>{button}</button>
+{/if}
 
 <style>
 	.title:hover {
@@ -39,9 +41,7 @@
 	.title.open {
 		background: #f6f6f6;
 		line-height: normal;
-		z-index: 1;
 		padding: 0.5rem;
-		position: absolute;
 		border: 1px solid #555;
 		box-sizing: border-box;
 	}
