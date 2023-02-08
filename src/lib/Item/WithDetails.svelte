@@ -15,7 +15,7 @@
 	}
 
 	function handleResult(type: ItemType[]) {
-		return type.join(' | ');
+		return `(${type.join(' | ')})`;
 	}
 </script>
 
@@ -26,7 +26,9 @@
 	on:keydown={toggleVisibility}
 >
 	<span class="name">{item.name}</span>
-	<span class="type">({handleResult(item.type)})</span>
+	{#if item.type.length > 0}
+		<span class="type">{handleResult(item.type)}</span>
+	{/if}
 	<span class="description">{item.description}</span>
 </span>
 {#if !isVisible}

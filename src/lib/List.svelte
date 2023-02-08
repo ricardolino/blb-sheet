@@ -11,14 +11,14 @@
 	let list: Item[] = [];
 	let results: Item[] = [];
 	let isVisible = false;
-	let searchElement;
+	let searchElement: HTMLElement;
 
 	const LIST_OPTIONS = [
-		{ format: ListType.advancement, component: WithDetails, options: ADVANCEMENTS },
-		{ format: ListType.consequence, component: WithDetails, options: AFFLICTIONS },
-		{ format: ListType.equipment, component: Equipment, options: EQUIPMENTS, isRepeatable: true },
-		{ format: ListType.treasure, component: Treasure, options: [], isRepeatable: true },
-		{ format: ListType.weapon, component: Weapon, options: WEAPONS, isRepeatable: true }
+		{ format: ListType.advancements, component: WithDetails, options: ADVANCEMENTS },
+		{ format: ListType.consequences, component: WithDetails, options: AFFLICTIONS },
+		{ format: ListType.equipments, component: Equipment, options: EQUIPMENTS, isRepeatable: true },
+		{ format: ListType.treasures, component: Treasure, options: [], isRepeatable: true },
+		{ format: ListType.weapons, component: Weapon, options: WEAPONS, isRepeatable: true }
 	];
 	const {
 		component,
@@ -57,7 +57,7 @@
 
 <div class="wrapper">
 	<div class="head">
-		<h2 class="title">{ListType[type]}s</h2>
+		<h2 class="title">{ListType[type]}</h2>
 		<div class="fieldset">
 			{#if isVisible}
 				<div class="overlay" on:click={hide} on:keydown={hide} />

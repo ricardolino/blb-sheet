@@ -28,7 +28,7 @@ export const ADVANCEMENTS = [
 	{
 		name: 'Child of Prophecy',
 		id: 2,
-		type: [AdvancementType.Basic],
+		type: [],
 		description:
 			'Luck guides this character toward their destiny. Roll a D6 at the start of each Adventuring Day. The result can replace a single die roll, regardless of who rolled it. Choose to replace the roll after rolling but before applying the outcome. This advancement is exclusive to character creation or, if the Doomsayer allows, following a weird or wonderful act of destiny.'
 	},
@@ -49,44 +49,44 @@ export const ADVANCEMENTS = [
 	{
 		name: 'Ears of the Own',
 		id: 5,
-		type: [AdvancementType.Basic],
+		type: [],
 		description: 'All Observation Checks relying on hearing have the Upper Hand.'
 	},
 	{
 		name: 'Eldritch Pact',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description:
 			"The character pacts with a powerful extraplanar creature like a Cinderbeast, Herald or Beyonder, promising servitude in exchange for world-bending power. Immediately choose 2 more available Advancements as gifts from their patron. Make a note that they were gained from an Eldritch Pact and do not grant additional Vigour or Grip nor count towards requisite Advancements to become Titled. Touching such powerful beings' minds adversely affects one's health, granting a random Affliction, either chosen or rolled randomly. Eldritch Pacts always return to bite. Patrons may demand confusing or difficult favours, which must be fulfilled. Consequences for refusing can be dire, including but not limited to, additional Afflictions or Injuries, loss of Vigour or Grip, Stat reduction, revoking the Eldritch Pact's Advancements or even death."
 	},
 	{
 		name: 'Extra Brawn',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description: "Increases the character's Brawn by 1. Remember to recalculate Maximum Vigour."
 	},
 	{
 		name: 'Extra Grip',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description: "Increases the character's Grip by 3."
 	},
 	{
 		name: 'Extra Will',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description: "Increases the character's Will by 1."
 	},
 	{
 		name: 'Extra Wit',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description: "Increases the character's Wit by 1."
 	},
 	{
 		name: 'Eyes of the Hawk',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description: 'All Observation Checks relying on sight have the Upper Hand.'
 	},
 	{
@@ -174,7 +174,7 @@ export const ADVANCEMENTS = [
 	{
 		name: 'Radiant Blade',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description:
 			'Spend 1 Grip before an Attack gaining the Upper Hand and dealing an extra D3 damage (magical for any relevant Advancement and Adaptations) if it lands.'
 	},
@@ -193,7 +193,7 @@ export const ADVANCEMENTS = [
 	{
 		name: 'Restored Vigour',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description:
 			'The character immediately returns to their Max Vigour (5 + Brawn + number of Advancements).'
 	},
@@ -221,7 +221,7 @@ export const ADVANCEMENTS = [
 	{
 		name: 'Tough As Nails',
 		id: 6,
-		type: [AdvancementType.Basic],
+		type: [],
 		description:
 			'Increase Maximum Vigour by 1 for each Advancement. When they suffer an Injury, spend 1 Grip to roll twice on the Injury table, choosing their preferred result.'
 	},

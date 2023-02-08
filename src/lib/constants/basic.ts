@@ -27,11 +27,11 @@ export enum RollType {
 }
 
 export enum ListType {
-	advancement,
-	consequence,
-	equipment,
-	treasure,
-	weapon
+	advancements,
+	consequences,
+	equipments,
+	treasures,
+	weapons
 }
 
 export const CONDITIONS = [
