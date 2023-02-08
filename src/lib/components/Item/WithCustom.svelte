@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Item } from '../types';
+	import type { Item } from '$lib/types';
 
 	export let item: Item;
 	export let button: string;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Item } from '../types';
+	import type { Item } from '$lib/types';
 	import type { AdvancementType, AfflictionType } from '$lib/constants';
 
 	export let item: Item;

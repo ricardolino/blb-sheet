@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { diff } from '$lib/helper';
+	import { diff } from '$lib/helpers';
 
 	import type { Item } from '$lib/types';
 	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ListType } from '$lib/constants';
-	import { WithDetails, Equipment, Treasure, Weapon } from '$lib/Item';
+	import { WithDetails, WithCustomAndSearch, WithCustom } from '$lib/components/Item';
 
 	export let type: ListType;
 
@@ -16,9 +16,19 @@
 	const LIST_OPTIONS = [
 		{ format: ListType.advancements, component: WithDetails, options: ADVANCEMENTS },
 		{ format: ListType.consequences, component: WithDetails, options: AFFLICTIONS },
-		{ format: ListType.equipments, component: Equipment, options: EQUIPMENTS, isRepeatable: true },
-		{ format: ListType.treasures, component: Treasure, options: [], isRepeatable: true },
-		{ format: ListType.weapons, component: Weapon, options: WEAPONS, isRepeatable: true }
+		{
+			format: ListType.equipments,
+			component: WithCustomAndSearch,
+			options: EQUIPMENTS,
+			isRepeatable: true
+		},
+		{ format: ListType.treasures, component: WithCustom, options: [], isRepeatable: true },
+		{
+			format: ListType.weapons,
+			component: WithCustomAndSearch,
+			options: WEAPONS,
+			isRepeatable: true
+		}
 	];
 	const {
 		component,

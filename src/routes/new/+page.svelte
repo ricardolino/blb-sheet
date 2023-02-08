@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { ListType, CONDITIONS, ARCHETYPES } from '$lib/constants';
 
-	import Attribute from '$lib/Attribute.svelte';
-	import List from '$lib/List.svelte';
+	import Attribute from '$lib/components/Attribute.svelte';
+	import List from '$lib/components/List.svelte';
 
 	let info = {
 		characterName: '',
