@@ -75,11 +75,11 @@
 </section>
 
 <section class="container">
-	<List type={ListType.advancement} />
-	<List type={ListType.consequence} />
-	<List type={ListType.equipment} />
-	<List type={ListType.treasure} />
-	<List type={ListType.weapon} />
+	<List type={ListType.advancements} />
+	<List type={ListType.consequences} />
+	<List type={ListType.equipments} />
+	<List type={ListType.treasures} />
+	<List type={ListType.weapons} />
 </section>
 
 <style>
