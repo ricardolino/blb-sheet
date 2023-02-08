@@ -7,7 +7,7 @@ import type {
 	AfflictionType as EnumAfflictionType
 } from '$lib/constants';
 
-export interface Item {
+export interface ItemType {
 	id: number;
 	name: string;
 }
@@ -24,16 +24,16 @@ export interface WeaponType {
 	}[];
 }
 
-export interface Weapon extends Item {
+export interface Weapon extends ItemType {
 	type: WeaponType;
 }
 
-export interface Advancement extends Item {
+export interface Advancement extends ItemType {
 	type: EnumAdvancementType[];
 	description: string;
 }
 
-export interface Consequence extends Item {
+export interface Consequence extends ItemType {
 	type: EnumAfflictionType[];
 	description: string;
 }

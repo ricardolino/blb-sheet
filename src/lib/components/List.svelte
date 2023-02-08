@@ -1,46 +1,33 @@
 <script lang="ts">
 	import { diff } from '$lib/helpers';
 
-	import type { Item } from '$lib/types';
+	import type { ItemType } from '$lib/types';
 	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ListType } from '$lib/constants';
-	import ItemComponent from '$lib/components/Item.svelte';
+	import Item from '$lib/components/Item.svelte';
 
 	export let type: ListType;
 
 	let search = '';
-	let list: Item[] = [];
-	let results: Item[] = [];
+	let list: ItemType[] = [];
+	let results: ItemType[] = [];
 	let isVisible = false;
 	let searchElement: HTMLElement;
 
 	const LIST_OPTIONS = [
-		{ format: ListType.advancements, component: ItemComponent, options: ADVANCEMENTS },
-		{ format: ListType.consequences, component: ItemComponent, options: AFFLICTIONS },
-		{
-			format: ListType.equipments,
-			component: ItemComponent,
-			options: EQUIPMENTS,
-			isRepeatable: true
-		},
-		{ format: ListType.treasures, component: ItemComponent, options: [], isRepeatable: true },
-		{
-			format: ListType.weapons,
-			component: ItemComponent,
-			options: WEAPONS,
-			isRepeatable: true
-		}
+		{ format: ListType.advancements, options: ADVANCEMENTS },
+		{ format: ListType.consequences, options: AFFLICTIONS },
+		{ format: ListType.equipments, options: EQUIPMENTS, isRepeatable: true },
+		{ format: ListType.treasures, options: [], isRepeatable: true },
+		{ format: ListType.weapons, options: WEAPONS, isRepeatable: true }
 	];
-	const {
-		component,
-		options = [],
-		isRepeatable = false
-	} = LIST_OPTIONS.find(({ format }) => format == type) || {};
+	const { options = [], isRepeatable = false } =
+		LIST_OPTIONS.find(({ format }) => format == type) || {};
 
 	function deleteItem(index: number) {
 		list = list.filter((_, i) => i != index);
 	}
 
-	function addItem(item: Item) {
+	function addItem(item: ItemType) {
 		list = [...list, item];
 		searchElement.focus();
 	}
@@ -54,8 +41,8 @@
 		search = '';
 	}
 
-	function getOptions(options: Item[], list: Item[]) {
-		return isRepeatable ? options : diff<Item>(options, list);
+	function getOptions(options: ItemType[], list: ItemType[]) {
+		return isRepeatable ? options : diff<ItemType>(options, list);
 	}
 
 	$: if (search.length >= 2) {
@@ -84,12 +71,7 @@
 				<ul class="list fixed">
 					{#each results as item}
 						<li class="item">
-							<svelte:component
-								this={component}
-								handleClick={() => addItem(item)}
-								{item}
-								button="+"
-							/>
+							<Item handleClick={() => addItem(item)} button="+" {item} />
 						</li>
 					{/each}
 				</ul>
@@ -100,12 +82,7 @@
 		<ul class="list full">
 			{#each list as item, index}
 				<li class="item">
-					<svelte:component
-						this={component}
-						handleClick={() => deleteItem(index)}
-						{item}
-						button="-"
-					/>
+					<Item handleClick={() => deleteItem(index)} button="-" {item} />
 				</li>
 			{/each}
 		</ul>

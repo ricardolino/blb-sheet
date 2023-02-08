@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { Item } from '$lib/types';
-	import type { AdvancementType, AfflictionType } from '$lib/constants';
+	import type { ItemType } from '$lib/types';
+	import type { AdvancementType, AfflictionType, WeaponType } from '$lib/constants';
 
-	export let item: Item;
+	export let item: ItemType;
 	export let button: string;
 	export let handleClick: () => void;
 
-	type ItemType = AdvancementType | AfflictionType;
+	type Type = AdvancementType | AfflictionType | WeaponType;
 
 	let isVisible = false;
 
@@ -14,7 +14,7 @@
 		isVisible = !isVisible;
 	}
 
-	function handleResult(type: ItemType[]) {
+	function handleResult(type: Type[]) {
 		return `(${type.join(' | ')})`;
 	}
 </script>
