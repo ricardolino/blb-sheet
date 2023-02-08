@@ -11,6 +11,7 @@
 	let list: Item[] = [];
 	let results: Item[] = [];
 	let isVisible = false;
+	let searchElement;
 
 	const LIST_OPTIONS = [
 		{ format: ListType.advancement, component: WithDetails, options: ADVANCEMENTS },
@@ -31,7 +32,7 @@
 
 	function addItem(item: Item) {
 		list = [...list, item];
-		search = '';
+		searchElement.focus();
 	}
 
 	function show() {
@@ -40,6 +41,7 @@
 
 	function hide() {
 		isVisible = false;
+		search = '';
 	}
 
 	function getOptions(options: Item[], list: Item[]) {
@@ -60,7 +62,14 @@
 			{#if isVisible}
 				<div class="overlay" on:click={hide} on:keydown={hide} />
 			{/if}
-			<input class="search" bind:value={search} placeholder="search for..." on:focus={show} />
+			<input
+				class="search"
+				class:open={isVisible}
+				bind:value={search}
+				bind:this={searchElement}
+				placeholder="search for..."
+				on:focus={show}
+			/>
 			{#if results.length > 0 && (isVisible || search.length >= 2)}
 				<ul class="list fixed">
 					{#each results as item}
@@ -141,7 +150,7 @@
 		border: 1px solid #555;
 	}
 
-	.search:focus {
+	.search.open {
 		position: relative;
 		z-index: 1;
 	}
