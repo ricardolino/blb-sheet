@@ -26,10 +26,12 @@
 	on:keydown={toggleVisibility}
 >
 	<span class="name">{item.name}</span>
-	{#if item.type.length > 0}
+	{#if item.type && item.type.length > 0}
 		<span class="type">{handleResult(item.type)}</span>
 	{/if}
-	<span class="description">{item.description}</span>
+	{#if item.description}
+		<span class="description">{item.description}</span>
+	{/if}
 </span>
 {#if !isVisible}
 	<button class="button" on:click={handleClick}>{button}</button>

@@ -3,7 +3,7 @@
 
 	import type { Item } from '$lib/types';
 	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ListType } from '$lib/constants';
-	import { WithDetails, WithCustomAndSearch, WithCustom } from '$lib/components/Item';
+	import ItemComponent from '$lib/components/Item.svelte';
 
 	export let type: ListType;
 
@@ -14,18 +14,18 @@
 	let searchElement: HTMLElement;
 
 	const LIST_OPTIONS = [
-		{ format: ListType.advancements, component: WithDetails, options: ADVANCEMENTS },
-		{ format: ListType.consequences, component: WithDetails, options: AFFLICTIONS },
+		{ format: ListType.advancements, component: ItemComponent, options: ADVANCEMENTS },
+		{ format: ListType.consequences, component: ItemComponent, options: AFFLICTIONS },
 		{
 			format: ListType.equipments,
-			component: WithCustomAndSearch,
+			component: ItemComponent,
 			options: EQUIPMENTS,
 			isRepeatable: true
 		},
-		{ format: ListType.treasures, component: WithCustom, options: [], isRepeatable: true },
+		{ format: ListType.treasures, component: ItemComponent, options: [], isRepeatable: true },
 		{
 			format: ListType.weapons,
-			component: WithCustomAndSearch,
+			component: ItemComponent,
 			options: WEAPONS,
 			isRepeatable: true
 		}
