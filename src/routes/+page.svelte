@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { ListType } from '$lib/constants';
+	import { ListType, CONDITIONS, ARCHETYPES } from '$lib/constants';
 
 	import Attribute from '$lib/Attribute.svelte';
 	import List from '$lib/List.svelte';
 
 	let info = {
-		playerName: '',
 		characterName: '',
 		archetype: '',
-		experience: 0
+		experience: 0,
+		statusCondition: ''
 	};
 
 	let stats = {
@@ -33,11 +33,25 @@
 <section class="head container">
 	<div class="flex spacer" class:hidden={status.inFight}>
 		<div class="half">
-			<input class="field" bind:value={info.playerName} placeholder="Player" />
 			<input class="field" bind:value={info.characterName} placeholder="Character" />
+			<select class="field selector" class:selected={info.archetype} bind:value={info.archetype}>
+				<option value="" selected disabled>Archetype</option>
+				{#each ARCHETYPES as archetype}
+					<option value={archetype.name}>{archetype.name}</option>
+				{/each}
+			</select>
 		</div>
 		<div class="half">
-			<input class="field" bind:value={info.archetype} placeholder="Archetype" />
+			<select
+				class="field selector"
+				class:selected={info.statusCondition}
+				bind:value={info.statusCondition}
+			>
+				<option value="" selected>No Condition</option>
+				{#each CONDITIONS as condition}
+					<option value={condition.name}>{condition.name}</option>
+				{/each}
+			</select>
 			<Attribute name="EXP" value={info.experience} min={0} max={8} />
 		</div>
 	</div>
@@ -97,8 +111,22 @@
 		box-sizing: border-box;
 		padding: 0.5rem 1rem;
 		font-size: 1.5rem;
-		border: 2px double;
+		border: 2px double #000;
 		width: 100%;
+	}
+
+	.field:focus {
+		outline: none;
+	}
+
+	.selector,
+	.selector option:first-child {
+		color: #888;
+	}
+
+	.selector.selected,
+	.selector option {
+		color: #000;
 	}
 
 	.vigor {
