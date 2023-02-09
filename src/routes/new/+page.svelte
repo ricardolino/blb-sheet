@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { ListType, CONDITIONS, ARCHETYPES } from '$lib/constants';
 
-	import Attribute from '$lib/components/Attribute.svelte';
-	import List from '$lib/components/List.svelte';
+	import { Attribute, List } from '$lib/components';
 
 	let info = {
 		characterName: '',
@@ -23,15 +22,10 @@
 		grip: 4,
 		armor: 7
 	};
-
-	let status = {
-		inFight: false,
-		haveShield: false
-	};
 </script>
 
 <section class="head container">
-	<div class="flex spacer" class:hidden={status.inFight}>
+	<div class="flex spacer">
 		<div class="half">
 			<input class="field" bind:value={info.characterName} placeholder="Character" />
 			<select class="field selector" class:selected={info.archetype} bind:value={info.archetype}>

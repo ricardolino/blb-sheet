@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { diff } from '$lib/helpers';
-
 	import type { ItemType } from '$lib/types';
 	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ListType } from '$lib/constants';
-	import Item from '$lib/components/Item.svelte';
+
+	import { Item } from '$lib/components';
 
 	export let type: ListType;
 
