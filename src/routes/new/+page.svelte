@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { ListType, CONDITIONS, ARCHETYPES } from '$lib/constants';
 
-	import { Attribute, List } from '$lib/components';
+	import { Attribute, List, Selector } from '$lib/components';
 
 	let info = {
 		characterName: '',
-		archetype: '',
+		archetype: undefined,
 		experience: 0,
-		statusCondition: ''
+		statusCondition: undefined
 	};
 
 	let stats = {
@@ -28,24 +28,21 @@
 	<div class="flex spacer">
 		<div class="half">
 			<input class="field" bind:value={info.characterName} placeholder="Character" />
-			<select class="field selector" class:selected={info.archetype} bind:value={info.archetype}>
-				<option value="" selected disabled>Archetype</option>
-				{#each ARCHETYPES as archetype}
-					<option value={archetype.name}>{archetype.name}</option>
-				{/each}
-			</select>
+			<Selector
+				class="field"
+				placeholder="Archetype"
+				list={ARCHETYPES}
+				value={info.archetype}
+				isRequired={true}
+			/>
 		</div>
 		<div class="half">
-			<select
-				class="field selector"
-				class:selected={info.statusCondition}
-				bind:value={info.statusCondition}
-			>
-				<option value="" selected>No Condition</option>
-				{#each CONDITIONS as condition}
-					<option value={condition.name}>{condition.name}</option>
-				{/each}
-			</select>
+			<Selector
+				class="field"
+				placeholder="No Condition"
+				list={CONDITIONS}
+				value={info.statusCondition}
+			/>
 			<Attribute name="EXP" value={info.experience} min={0} max={8} />
 		</div>
 	</div>
@@ -101,7 +98,8 @@
 		margin-bottom: 1rem;
 	}
 
-	.field {
+	.field,
+	:global(.field.selector) {
 		box-sizing: border-box;
 		padding: 0.5rem 1rem;
 		font-size: 1.5rem;
@@ -113,21 +111,7 @@
 		outline: none;
 	}
 
-	.selector,
-	.selector option:first-child {
-		color: #888;
-	}
-
-	.selector.selected,
-	.selector option {
-		color: #000;
-	}
-
 	.vigor {
 		display: flex;
-	}
-
-	.hidden {
-		display: none;
 	}
 </style>
