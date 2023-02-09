@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ListType, CONDITIONS, ARCHETYPES } from '$lib/constants';
+	import { ListType, CONDITIONS, ARCHETYPES, DEFAULT_EQUIPMENTS } from '$lib/constants';
 
 	import { Attribute, List, Selector } from '$lib/components';
 
@@ -20,7 +20,7 @@
 		armor: 7,
 		advancements: [],
 		consequences: [],
-		equipments: [],
+		equipments: [...DEFAULT_EQUIPMENTS],
 		treasures: [],
 		weapons: []
 	};
