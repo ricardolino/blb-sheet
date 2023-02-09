@@ -4,7 +4,6 @@
 	import { Attribute, List, Selector } from '$lib/components';
 
 	export let isEdit = false;
-
 	export let data = {
 		characterName: '',
 		archetype: '',
@@ -29,7 +28,12 @@
 <section class="head container">
 	<div class="flex spacer">
 		<div class="half">
-			<input class="field" bind:value={data.characterName} placeholder="Character" />
+			<input
+				class="field"
+				bind:value={data.characterName}
+				placeholder="Character"
+				disabled={isEdit || null}
+			/>
 			<Selector
 				class="field"
 				placeholder="Archetype"
