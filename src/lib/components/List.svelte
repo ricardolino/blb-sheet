@@ -6,9 +6,9 @@
 	import { Item } from '$lib/components';
 
 	export let type: ListType;
+	export let list: ItemType[] = [];
 
 	let search = '';
-	let list: ItemType[] = [];
 	let results: ItemType[] = [];
 	let isVisible = false;
 	let searchElement: HTMLElement;

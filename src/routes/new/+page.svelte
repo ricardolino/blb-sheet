@@ -3,14 +3,11 @@
 
 	import { Attribute, List, Selector } from '$lib/components';
 
-	let info = {
+	let sheet = {
 		characterName: '',
 		archetype: undefined,
 		experience: 0,
-		statusCondition: undefined
-	};
-
-	let stats = {
+		statusCondition: undefined,
 		brawn: 0,
 		wit: 0,
 		will: 0,
@@ -20,19 +17,24 @@
 			maximum: 6
 		},
 		grip: 4,
-		armor: 7
+		armor: 7,
+		advancements: [],
+		consequences: [],
+		equipments: [],
+		treasures: [],
+		weapons: []
 	};
 </script>
 
 <section class="head container">
 	<div class="flex spacer">
 		<div class="half">
-			<input class="field" bind:value={info.characterName} placeholder="Character" />
+			<input class="field" bind:value={sheet.characterName} placeholder="Character" />
 			<Selector
 				class="field"
 				placeholder="Archetype"
 				list={ARCHETYPES}
-				value={info.archetype}
+				bind:value={sheet.archetype}
 				isRequired={true}
 			/>
 		</div>
@@ -41,36 +43,39 @@
 				class="field"
 				placeholder="No Condition"
 				list={CONDITIONS}
-				value={info.statusCondition}
+				bind:value={sheet.statusCondition}
 			/>
-			<Attribute name="EXP" value={info.experience} min={0} max={8} />
+			<Attribute name="EXP" bind:value={sheet.experience} min={0} max={8} />
 		</div>
 	</div>
-
 	<div class="flex">
 		<div class="half">
-			<Attribute name="Brawn" value={stats.brawn} />
-			<Attribute name="Wit" value={stats.wit} />
-			<Attribute name="Will" value={stats.will} />
-			<Attribute name="Affluence" value={stats.affluence} />
+			<Attribute name="Brawn" bind:value={sheet.brawn} />
+			<Attribute name="Wit" bind:value={sheet.wit} />
+			<Attribute name="Will" bind:value={sheet.will} />
+			<Attribute name="Affluence" bind:value={sheet.affluence} />
 		</div>
 		<div class="half">
 			<div class="vigor">
-				<Attribute name="Current" value={stats.vigor.current} min={1} max={stats.vigor.maximum} />
-				<Attribute name="Max" value={stats.vigor.maximum} min={1} />
+				<Attribute
+					name="Current"
+					bind:value={sheet.vigor.current}
+					min={1}
+					max={sheet.vigor.maximum}
+				/>
+				<Attribute name="Max" bind:value={sheet.vigor.maximum} min={1} />
 			</div>
-			<Attribute name="Grip" value={stats.grip} min={1} />
-			<Attribute name="Armor" value={stats.armor} min={7} />
+			<Attribute name="Grip" bind:value={sheet.grip} min={1} />
+			<Attribute name="Armor" bind:value={sheet.armor} min={7} />
 		</div>
 	</div>
 </section>
-
 <section class="container">
-	<List type={ListType.advancements} />
-	<List type={ListType.consequences} />
-	<List type={ListType.equipments} />
-	<List type={ListType.treasures} />
-	<List type={ListType.weapons} />
+	<List type={ListType.advancements} bind:list={sheet.advancements} />
+	<List type={ListType.consequences} bind:list={sheet.consequences} />
+	<List type={ListType.equipments} bind:list={sheet.equipments} />
+	<List type={ListType.treasures} bind:list={sheet.treasures} />
+	<List type={ListType.weapons} bind:list={sheet.weapons} />
 </section>
 
 <style>
