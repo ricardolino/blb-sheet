@@ -111,47 +111,47 @@ const WEAPON_TYPE = {
 export const WEAPONS: Weapon[] = [
 	{
 		id: 0,
-		name: 'broadsword',
+		name: 'Broadsword',
 		type: WEAPON_TYPE.hand
 	},
 	{
 		id: 1,
-		name: 'hand axe',
+		name: 'Hand Axe',
 		type: WEAPON_TYPE.hand
 	},
 	{
 		id: 2,
-		name: 'mace',
+		name: 'Mace',
 		type: WEAPON_TYPE.hand
 	},
 	{
 		id: 3,
-		name: 'greatsword',
+		name: 'Greatsword',
 		type: WEAPON_TYPE.heavy
 	},
 	{
 		id: 4,
-		name: 'battleaxe',
+		name: 'Battleaxe',
 		type: WEAPON_TYPE.heavy
 	},
 	{
 		id: 5,
-		name: 'warhammer',
+		name: 'Warhammer',
 		type: WEAPON_TYPE.heavy
 	},
 	{
 		id: 6,
-		name: 'dagger',
+		name: 'Dagger',
 		type: WEAPON_TYPE.light
 	},
 	{
 		id: 7,
-		name: 'rapier',
+		name: 'Rapier',
 		type: WEAPON_TYPE.light
 	},
 	{
 		id: 8,
-		name: 'scimitar',
+		name: 'Scimitar',
 		type: WEAPON_TYPE.light
 	}
 ];
