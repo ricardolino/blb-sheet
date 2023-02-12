@@ -1,11 +1,19 @@
 <script lang="ts">
-	import { ListType, CONDITIONS, ARCHETYPES, DEFAULT_EQUIPMENTS } from '$lib/constants';
+	import { goto } from '$app/navigation';
+
+	import {
+		ListType,
+		CONDITIONS,
+		ARCHETYPES,
+		DEFAULT_EQUIPMENTS,
+		SHEETS_API_PATH
+	} from '$lib/constants';
 
 	import { Attribute, List, Selector } from '$lib/components';
 
 	export let isEdit = false;
 	export let data = {
-		characterName: '',
+		name: '',
 		archetype: '',
 		experience: 0,
 		statusCondition: '',
@@ -23,6 +31,32 @@
 		treasures: [],
 		weapons: []
 	};
+
+	function handleResponse(response: Response) {
+		if (!response.ok) {
+			throw new Error(response.statusText);
+		}
+
+		goto(`/${data.name}`);
+	}
+
+	async function saveSheet() {
+		fetch(SHEETS_API_PATH, {
+			method: 'POST',
+			body: JSON.stringify(data)
+		})
+			.then(handleResponse)
+			.catch(console.error);
+	}
+
+	async function updateSheet() {
+		fetch(`${SHEETS_API_PATH}/${data.name}`, {
+			method: 'PUT',
+			body: JSON.stringify(data)
+		})
+			.then(handleResponse)
+			.catch(console.error);
+	}
 </script>
 
 <section class="head container">
@@ -30,7 +64,7 @@
 		<div class="half">
 			<input
 				class="field"
-				bind:value={data.characterName}
+				bind:value={data.name}
 				placeholder="Character"
 				disabled={isEdit || null}
 			/>
@@ -76,6 +110,7 @@
 	<List type={ListType.equipments} bind:list={data.equipments} />
 	<List type={ListType.treasures} bind:list={data.treasures} />
 	<List type={ListType.weapons} bind:list={data.weapons} />
+	<button on:click={isEdit ? updateSheet : saveSheet}>{isEdit ? 'Update' : 'Save'}</button>
 </section>
 
 <style>
