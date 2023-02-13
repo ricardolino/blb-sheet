@@ -12,32 +12,41 @@ function getSheetsPath(name: string) {
 }
 
 export function saveSheetFile(data = {}, update = false) {
-	if (!fs.existsSync(SHEETS_PATH)) {
+	const jsonData = JSON.stringify(data, undefined, 4);
+	const path = getSheetsPath(data.name);
+	const hasFile = fs.existsSync(path);
+	const hasFolder = fs.existsSync(SHEETS_PATH);
+
+	if (!hasFolder) {
 		fs.mkdirSync(SHEETS_PATH);
 	}
 
-	if (!update && fs.existsSync(getSheetsPath(data.name))) {
+	if (!update && hasFile) {
 		throw error(409, 'Character already exists');
 	}
 
-	if (update && !fs.existsSync(getSheetsPath(data.name))) {
+	if (update && !hasFile) {
 		throw error(404, 'Character not found');
 	}
 
-	fs.writeFileSync(getSheetsPath(data.name), JSON.stringify(data, undefined, 4), 'utf-8');
+	fs.writeFileSync(path, jsonData, 'utf-8');
 }
 
 export function getSheetFile(name: string) {
+	const path = getSheetsPath(name);
+
 	try {
-		return fs.readFileSync(getSheetsPath(name));
+		return fs.readFileSync(path);
 	} catch (err) {
 		throw error(404, 'Character not found');
 	}
 }
 
 export function deleteSheetFile(name: string) {
+	const path = getSheetsPath(name);
+
 	try {
-		return fs.unlinkSync(getSheetsPath(name));
+		return fs.unlinkSync(path);
 	} catch (err) {
 		throw error(404, 'Character not found');
 	}
