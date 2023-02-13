@@ -7,13 +7,9 @@ export function diff<T>(arr1: T[] = [], arr2: T[] = []): T[] {
 	return arr1.filter((x) => !arr2.includes(x));
 }
 
-function getSheetsPath(name: string) {
-	return `${SHEETS_PATH}/${name}.json`;
-}
-
 export function saveSheetFile(data = {}, update = false) {
+	const path = `${SHEETS_PATH}/${data.name}.json`;
 	const jsonData = JSON.stringify(data, undefined, 4);
-	const path = getSheetsPath(data.name);
 	const hasFile = fs.existsSync(path);
 	const hasFolder = fs.existsSync(SHEETS_PATH);
 
@@ -33,7 +29,7 @@ export function saveSheetFile(data = {}, update = false) {
 }
 
 export function getSheetFile(name: string) {
-	const path = getSheetsPath(name);
+	const path = `${SHEETS_PATH}/${name}.json`;
 
 	try {
 		return fs.readFileSync(path);
@@ -43,7 +39,7 @@ export function getSheetFile(name: string) {
 }
 
 export function deleteSheetFile(name: string) {
-	const path = getSheetsPath(name);
+	const path = `${SHEETS_PATH}/${name}.json`;
 
 	try {
 		return fs.unlinkSync(path);
