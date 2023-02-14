@@ -1,36 +1,13 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	import {
-		ListType,
-		CONDITIONS,
-		ARCHETYPES,
-		DEFAULT_EQUIPMENTS,
-		SHEETS_API_PATH
-	} from '$lib/constants';
+	import { ListType, CONDITIONS, ARCHETYPES, DEFAULT_SHEET, SHEETS_API_PATH } from '$lib/constants';
 
 	import { Attribute, List, Selector } from '$lib/components';
+	import type { Sheet } from '$lib/types';
 
 	export let isEdit = false;
-	export let data = {
-		name: '',
-		archetype: '',
-		experience: 0,
-		statusCondition: '',
-		brawn: 0,
-		wit: 0,
-		will: 0,
-		affluence: 0,
-		currentVigor: 6,
-		maxVigor: 6,
-		grip: 4,
-		armor: 7,
-		advancements: [],
-		consequences: [],
-		equipments: [...DEFAULT_EQUIPMENTS],
-		treasures: [],
-		weapons: []
-	};
+	export let data: Sheet = { ...DEFAULT_SHEET };
 
 	function handleResponse(response: Response) {
 		if (!response.ok) {

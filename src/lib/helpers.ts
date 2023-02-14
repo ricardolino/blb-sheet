@@ -2,12 +2,13 @@ import fs from 'fs';
 import { error } from '@sveltejs/kit';
 
 import { SHEETS_PATH } from './constants';
+import type { Sheet } from './types';
 
 export function diff<T>(arr1: T[] = [], arr2: T[] = []): T[] {
 	return arr1.filter((x) => !arr2.includes(x));
 }
 
-export function saveSheetFile(data = {}, update = false) {
+export function saveSheetFile(data: Sheet, update = false) {
 	const path = `${SHEETS_PATH}/${data.name}.json`;
 	const jsonData = JSON.stringify(data, undefined, 4);
 	const hasFile = fs.existsSync(path);

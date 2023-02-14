@@ -2,18 +2,19 @@ import type {
 	ZoneRange,
 	Stat,
 	Modifier,
-	WeaponType as EnumWeaponType,
-	AdvancementType as EnumAdvancementType,
-	AfflictionType as EnumAfflictionType
+	WeaponCategory,
+	AdvancementCategory,
+	AfflictionCategory
 } from '$lib/constants';
 
 export interface ItemType {
-	id: number;
 	name: string;
+	categories?: WeaponCategory[] | AdvancementCategory[] | AfflictionCategory[] | string[];
+	description?: string;
 }
 
 export interface WeaponType {
-	name: EnumWeaponType;
+	name: WeaponCategory;
 	range: ZoneRange;
 	attack: Stat[];
 	damageMod: number;
@@ -24,16 +25,22 @@ export interface WeaponType {
 	}[];
 }
 
-export interface Weapon extends ItemType {
-	type: WeaponType;
-}
-
-export interface Advancement extends ItemType {
-	type: EnumAdvancementType[];
-	description: string;
-}
-
-export interface Consequence extends ItemType {
-	type: EnumAfflictionType[];
-	description: string;
+export interface Sheet {
+	name: string;
+	archetype: string;
+	experience: number;
+	statusCondition: string;
+	brawn: number;
+	wit: number;
+	will: number;
+	affluence: number;
+	currentVigor: number;
+	maxVigor: number;
+	grip: number;
+	armor: number;
+	advancements: ItemType[];
+	consequences: ItemType[];
+	equipments: ItemType[];
+	treasures: ItemType[];
+	weapons: ItemType[];
 }

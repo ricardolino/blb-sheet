@@ -1,12 +1,9 @@
 <script lang="ts">
 	import type { ItemType } from '$lib/types';
-	import type { AdvancementType, AfflictionType, WeaponType } from '$lib/constants';
 
 	export let item: ItemType;
 	export let button: string;
 	export let handleClick: () => void;
-
-	type Type = AdvancementType | AfflictionType | WeaponType;
 
 	let isVisible = false;
 
@@ -14,8 +11,8 @@
 		isVisible = !isVisible;
 	}
 
-	function handleResult(type: Type[]) {
-		return `(${type.join(' | ')})`;
+	function handleResult({ categories = [] }: ItemType) {
+		return `(${categories.join(' | ')})`;
 	}
 </script>
 
@@ -26,8 +23,8 @@
 	on:keydown={toggleVisibility}
 >
 	<span class="name">{item.name}</span>
-	{#if item.type && item.type.length > 0}
-		<span class="type">{handleResult(item.type)}</span>
+	{#if item.categories && item.categories.length > 0}
+		<span class="categories">{handleResult(item)}</span>
 	{/if}
 	{#if item.description}
 		<span class="description">{item.description}</span>
@@ -54,7 +51,7 @@
 		cursor: alias;
 	}
 
-	.title .type,
+	.title .categories,
 	.title .description {
 		display: none;
 	}
@@ -63,11 +60,11 @@
 		font-weight: bold;
 	}
 
-	.title.open .type {
+	.title.open .categories {
 		font-style: italic;
 	}
 
-	.title.open .type,
+	.title.open .categories,
 	.title.open .description {
 		display: block;
 		font-size: small;

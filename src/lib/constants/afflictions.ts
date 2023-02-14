@@ -1,10 +1,10 @@
-export enum AfflictionType {
+export enum AfflictionCategory {
 	CharacterFlaw = 'Character Flaw',
 	GrowingAffliction = 'Growing Affliction',
 	SpecialAffliction = 'Special Affliction'
 }
 
-const { CharacterFlaw, GrowingAffliction, SpecialAffliction } = AfflictionType;
+const { CharacterFlaw, GrowingAffliction, SpecialAffliction } = AfflictionCategory;
 
 export const AFFLICTIONS = [
 	{

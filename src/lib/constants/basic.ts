@@ -1,3 +1,6 @@
+import type { Sheet } from '$lib/types';
+import { DEFAULT_EQUIPMENTS } from './equipments';
+
 export enum ZoneRange {
 	melee,
 	short,
@@ -96,3 +99,23 @@ export const ARCHETYPES = [
 		name: 'Veteran'
 	}
 ];
+
+export const DEFAULT_SHEET: Sheet = {
+	name: '',
+	archetype: '',
+	experience: 0,
+	statusCondition: '',
+	brawn: 0,
+	wit: 0,
+	will: 0,
+	affluence: 0,
+	currentVigor: 6,
+	maxVigor: 6,
+	grip: 4,
+	armor: 7,
+	advancements: [],
+	consequences: [],
+	equipments: [...DEFAULT_EQUIPMENTS],
+	treasures: [],
+	weapons: []
+};

@@ -2,9 +2,10 @@
 	import { goto } from '$app/navigation';
 
 	import { SHEETS_API_PATH } from '$lib/constants';
+	import type { Sheet } from '$lib/types';
 
 	/** @type {import('./$types').PageData} */
-	export let data;
+	export let data: Sheet;
 
 	function deleteSheet() {
 		fetch(`${SHEETS_API_PATH}/${data.name}`, {
