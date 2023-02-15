@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { error } from '@sveltejs/kit';
 
-import { SHEETS_PATH } from './constants';
-import type { Sheet } from './types';
+import { SHEETS_PATH, WeaponCategory, WEAPON_TYPE } from './constants';
+import type { ItemType, Sheet } from './types';
 
 export function diff<T>(arr1: T[] = [], arr2: T[] = []): T[] {
 	return arr1.filter((x) => !arr2.includes(x));
@@ -47,4 +47,25 @@ export function deleteSheetFile(name: string) {
 	} catch (err) {
 		throw error(404, 'Character not found');
 	}
+}
+
+export function handleWeapon({ categories = [] }: ItemType) {
+	const { Gunpowder } = WeaponCategory;
+
+	const getAttr = (attr: string, noGunpowder = false) => {
+		const filterGunpowder = (category: WeaponCategory) =>
+			noGunpowder ? category !== Gunpowder : category === Gunpowder;
+		const mapCategory = (category: WeaponCategory) => WEAPON_TYPE[category][attr];
+
+		return categories.includes(Gunpowder)
+			? categories.filter(filterGunpowder).map(mapCategory)
+			: categories.map(mapCategory);
+	};
+
+	const attack = `${getAttr('attack')}`;
+	const range = `${getAttr('range', true)} range`;
+	const damageMod = `modifier ${getAttr('damageMod')}`;
+	const initiative = `initiative ${getAttr('initiative')}`;
+
+	return `(${categories} | [${attack}] ${range} | ${damageMod} | ${initiative})`;
 }

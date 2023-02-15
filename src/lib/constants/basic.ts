@@ -2,17 +2,17 @@ import type { Sheet } from '$lib/types';
 import { DEFAULT_EQUIPMENTS } from './equipments';
 
 export enum ZoneRange {
-	melee,
-	short,
-	long,
-	special
+	melee = 'melee',
+	short = 'short',
+	long = 'long',
+	special = 'special'
 }
 
 export enum Stat {
-	brawn,
-	wit,
-	will,
-	affluence
+	brawn = 'brawn',
+	wit = 'wit',
+	will = 'will',
+	affluence = 'affluence'
 }
 
 export enum Modifier {

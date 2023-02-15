@@ -12,10 +12,10 @@ export enum WeaponCategory {
 	Gunpowder = 'Gunpowder'
 }
 
-const WEAPON_TYPE = {
+export const WEAPON_TYPE = {
 	[WeaponCategory.Hand]: {
 		range: ZoneRange.melee,
-		attack: [Stat.brawn],
+		attack: Stat.brawn,
 		damageMod: 0,
 		initiative: 0,
 		modifiers: [
@@ -30,13 +30,13 @@ const WEAPON_TYPE = {
 	},
 	[WeaponCategory.Heavy]: {
 		range: ZoneRange.melee,
-		attack: [Stat.brawn],
+		attack: Stat.brawn,
 		damageMod: 1,
 		initiative: -1
 	},
 	[WeaponCategory.Light]: {
 		range: ZoneRange.melee,
-		attack: [Stat.wit],
+		attack: Stat.wit,
 		damageMod: -1,
 		initiative: 0,
 		modifiers: [
@@ -51,7 +51,7 @@ const WEAPON_TYPE = {
 	},
 	[WeaponCategory.Long]: {
 		range: ZoneRange.short,
-		attack: [Stat.brawn],
+		attack: Stat.brawn,
 		damageMod: 0,
 		initiative: -1,
 		modifiers: [
@@ -66,7 +66,7 @@ const WEAPON_TYPE = {
 	},
 	[WeaponCategory.Throwing]: {
 		range: ZoneRange.short,
-		attack: [Stat.wit, Stat.brawn],
+		attack: Stat.wit,
 		damageMod: 0,
 		initiative: 0,
 		modifiers: [
@@ -76,18 +76,25 @@ const WEAPON_TYPE = {
 				target: {
 					damageMod: -1
 				}
+			},
+			{
+				name: Modifier.melee,
+				type: ModifierType.conditional,
+				target: {
+					attack: Stat.brawn
+				}
 			}
 		]
 	},
 	[WeaponCategory.Ranged]: {
 		range: ZoneRange.long,
-		attack: [Stat.wit],
+		attack: Stat.wit,
 		damageMod: 0,
 		initiative: 0
 	},
 	[WeaponCategory.Improvised]: {
 		range: ZoneRange.melee,
-		attack: [Stat.brawn],
+		attack: Stat.brawn,
 		damageMod: -2, // TODO: change to half damage
 		initiative: 0,
 		modifiers: [
@@ -102,7 +109,7 @@ const WEAPON_TYPE = {
 	},
 	[WeaponCategory.Gunpowder]: {
 		range: ZoneRange.special,
-		attack: [Stat.wit],
+		attack: Stat.wit,
 		damageMod: 0,
 		initiative: 0,
 		modifiers: [
@@ -121,12 +128,12 @@ export const WEAPONS: ItemType[] = [
 	{
 		name: 'Broadsword',
 		categories: [WeaponCategory.Hand],
-		description: 'A long, single-edged sword with a wide blade.'
+		description: 'A broad-bladed sword used for cutting rather than stabbing.'
 	},
 	{
 		name: 'Hand Axe',
 		categories: [WeaponCategory.Hand],
-		description: 'A small axe with a short handle.'
+		description: 'A short-handled axe intended for use with one hand.'
 	},
 	{
 		name: 'Mace',
@@ -213,20 +220,20 @@ export const WEAPONS: ItemType[] = [
 	},
 	{
 		name: 'Pistol',
-		categories: [WeaponCategory.Throwing, WeaponCategory.Gunpowder],
+		categories: [WeaponCategory.Gunpowder, WeaponCategory.Throwing],
 		description:
-			'A small, portable firearm with a single barrel and a short stock. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
+			'A small, portable firearm with a single barrel and a short stock. Every attack has Upper Hands. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
 	},
 	{
 		name: 'Musket',
-		categories: [WeaponCategory.Ranged, WeaponCategory.Gunpowder],
+		categories: [WeaponCategory.Gunpowder, WeaponCategory.Ranged],
 		description:
-			'A long barrel firearm, typically smooth-bored and fired from the shoulder. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
+			'A long barrel firearm, typically smooth-bored and fired from the shoulder. Every attack has Upper Hands. Require a full minute reloading and are usually only be fired once per combat. Can be used as a Heavy Weapon when equipped with a bayonet. 5 ammunitions.'
 	},
 	{
 		name: 'Blunderbuss',
-		categories: [WeaponCategory.Heavy, WeaponCategory.Gunpowder],
+		categories: [WeaponCategory.Gunpowder, WeaponCategory.Heavy],
 		description:
-			'An obsolete short musket with large bore and flared muzzle, used to scatter shot at short range. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
+			'An obsolete short musket with large bore and flared muzzle, used to scatter shot at short range. Every attack has Upper Hands. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
 	}
 ];

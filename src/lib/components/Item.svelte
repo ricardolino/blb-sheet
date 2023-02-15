@@ -4,15 +4,12 @@
 	export let item: ItemType;
 	export let button: string;
 	export let handleClick: () => void;
+	export let handleResult = ({ categories = [] }: ItemType) => `(${categories.join(' | ')})`;
 
 	let isVisible = false;
 
 	function toggleVisibility() {
 		isVisible = !isVisible;
-	}
-
-	function handleResult({ categories = [] }: ItemType) {
-		return `(${categories.join(' | ')})`;
 	}
 </script>
 

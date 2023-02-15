@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { diff } from '$lib/helpers';
+	import { diff, handleWeapon } from '$lib/helpers';
 	import type { ItemType } from '$lib/types';
 	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ListType } from '$lib/constants';
 
@@ -18,10 +18,14 @@
 		{ format: ListType.consequences, options: AFFLICTIONS },
 		{ format: ListType.equipments, options: EQUIPMENTS, isRepeatable: true },
 		{ format: ListType.treasures, options: [], isRepeatable: true },
-		{ format: ListType.weapons, options: WEAPONS, isRepeatable: true }
+		{ format: ListType.weapons, options: WEAPONS, isRepeatable: true, handleResult: handleWeapon }
 	];
-	const { options = [], isRepeatable = false } =
-		LIST_OPTIONS.find(({ format }) => format == type) || {};
+
+	const {
+		options = [],
+		isRepeatable = false,
+		handleResult
+	} = LIST_OPTIONS.find(({ format }) => format == type) || {};
 
 	function deleteItem(index: number) {
 		list = list.filter((_, i) => i != index);
@@ -71,7 +75,7 @@
 				<ul class="list fixed">
 					{#each results as item}
 						<li class="item">
-							<Item handleClick={() => addItem(item)} button="+" {item} />
+							<Item handleClick={() => addItem(item)} button="+" {item} {handleResult} />
 						</li>
 					{/each}
 				</ul>
@@ -82,7 +86,7 @@
 		<ul class="list full">
 			{#each list as item, index}
 				<li class="item">
-					<Item handleClick={() => deleteItem(index)} button="-" {item} />
+					<Item handleClick={() => deleteItem(index)} button="-" {item} {handleResult} />
 				</li>
 			{/each}
 		</ul>
