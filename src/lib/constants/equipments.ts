@@ -139,7 +139,7 @@ export const EQUIPMENTS: ItemType[] = [
 	{
 		name: 'Potion',
 		description:
-			'Potions are drinkable chemical concoctions granting monstrous powers. Most are brewed from natural or monstrous components by arcane specialists known as "Chemikers". Every Potion has an associated Adaptation (pg 97). As an action, spend a point to Grip to drink a Potion, granting the Adaptation`s effects for a single combat or 5 minutes, whichever is shorter.',
+			'Potions are drinkable chemical concoctions granting monstrous powers. Most are brewed from natural or monstrous components by arcane specialists known as "Chemikers". Every Potion has an associated Adaptation. As an action, spend a point to Grip to drink a Potion, granting the Adaptation`s effects for a single combat or 5 minutes, whichever is shorter.',
 		categories: [ItemCategory.Consumable, ItemCategory.Special]
 	}
 ];
