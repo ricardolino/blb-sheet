@@ -8,7 +8,8 @@ export enum WeaponCategory {
 	Long = 'Long',
 	Throwing = 'Throwing',
 	Ranged = 'Ranged',
-	Improvised = 'Improvised'
+	Improvised = 'Improvised',
+	Gunpowder = 'Gunpowder'
 }
 
 const WEAPON_TYPE = {
@@ -98,6 +99,21 @@ const WEAPON_TYPE = {
 				}
 			}
 		]
+	},
+	[WeaponCategory.Gunpowder]: {
+		range: ZoneRange.special,
+		attack: [Stat.wit],
+		damageMod: 0,
+		initiative: 0,
+		modifiers: [
+			{
+				name: Modifier.gunpowder,
+				type: ModifierType.effect,
+				target: {
+					RollType: RollType.upperHand
+				}
+			}
+		]
 	}
 };
 
@@ -142,11 +158,75 @@ export const WEAPONS: ItemType[] = [
 	{
 		name: 'Rapier',
 		categories: [WeaponCategory.Light],
-		description: 'A long, thin, single-edged sword with a narrow blade.'
+		description: 'A thin, light sharp-pointed sword used for thrusting.'
 	},
 	{
 		name: 'Scimitar',
 		categories: [WeaponCategory.Light],
-		description: 'A curved, single-edged sword with a narrow blade.'
+		description: 'A  single-edged sword with a convex curved blade.'
+	},
+	{
+		name: 'Spear',
+		categories: [WeaponCategory.Long],
+		description: 'A long, thin, two-handed polearm with a sharp point.'
+	},
+	{
+		name: 'Halberd',
+		categories: [WeaponCategory.Long],
+		description: 'A two-handed axe blade topped with a spike mounted on a long shaft.'
+	},
+	{
+		name: 'Guisarme',
+		categories: [WeaponCategory.Long],
+		description:
+			'A shafted weapon having as a head a curved, double-edged blade with a beak at the back.'
+	},
+	{
+		name: 'Throwing Dagger',
+		categories: [WeaponCategory.Throwing],
+		description: 'A small, sharp blade used for throwing. 3 units.'
+	},
+	{
+		name: 'Throwing Axe',
+		categories: [WeaponCategory.Throwing],
+		description: 'A small axe used for throwing. 3 units.'
+	},
+	{
+		name: 'Javelin',
+		categories: [WeaponCategory.Throwing],
+		description: 'A long, thin, pointed spear used for throwing. 3 units.'
+	},
+	{
+		name: 'Crossbow',
+		categories: [WeaponCategory.Ranged],
+		description: 'A bow mounted on a stock that is used to shoot projectiles. 10 ammunitions.'
+	},
+	{
+		name: 'Longbow',
+		categories: [WeaponCategory.Ranged],
+		description: 'A bow with a long handle and a flexible bowstring. 10 ammunitions.'
+	},
+	{
+		name: 'Shortbow',
+		categories: [WeaponCategory.Ranged],
+		description: 'A bow with a short handle and a flexible bowstring. 10 ammunitions.'
+	},
+	{
+		name: 'Pistol',
+		categories: [WeaponCategory.Throwing, WeaponCategory.Gunpowder],
+		description:
+			'A small, portable firearm with a single barrel and a short stock. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
+	},
+	{
+		name: 'Musket',
+		categories: [WeaponCategory.Ranged, WeaponCategory.Gunpowder],
+		description:
+			'A long barrel firearm, typically smooth-bored and fired from the shoulder. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
+	},
+	{
+		name: 'Blunderbuss',
+		categories: [WeaponCategory.Heavy, WeaponCategory.Gunpowder],
+		description:
+			'An obsolete short musket with large bore and flared muzzle, used to scatter shot at short range. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
 	}
 ];
