@@ -11,20 +11,39 @@
 	let search = '';
 	let results: ItemType[] = [];
 	let isVisible = false;
-	let searchElement: HTMLElement;
+	let searchRef: HTMLElement;
 
 	const LIST_OPTIONS = [
-		{ format: ListType.advancements, options: ADVANCEMENTS },
-		{ format: ListType.consequences, options: AFFLICTIONS },
-		{ format: ListType.equipments, options: EQUIPMENTS, isRepeatable: true },
-		{ format: ListType.treasures, options: [], isRepeatable: true },
-		{ format: ListType.weapons, options: WEAPONS, isRepeatable: true, handleResult: handleWeapon }
+		{ format: ListType.advancements, options: ADVANCEMENTS, placeholder: 'Search a Advancement' },
+		{ format: ListType.consequences, options: AFFLICTIONS, placeholder: 'Search a Consequence' },
+		{
+			format: ListType.equipments,
+			options: EQUIPMENTS,
+			isRepeatable: true,
+			placeholder: 'Search or Add a New Equipment'
+		},
+		{
+			format: ListType.treasures,
+			options: [],
+			isRepeatable: true,
+			placeholder: 'Add Treasure',
+			empty: 'Add a New Treasure'
+		},
+		{
+			format: ListType.weapons,
+			options: WEAPONS,
+			isRepeatable: true,
+			handleResult: handleWeapon,
+			placeholder: 'Search or Add a New Weapon'
+		}
 	];
 
 	const {
 		options = [],
 		isRepeatable = false,
-		handleResult
+		handleResult,
+		placeholder,
+		empty = 'No Results'
 	} = LIST_OPTIONS.find(({ format }) => format == type) || {};
 
 	function deleteItem(index: number) {
@@ -33,7 +52,7 @@
 
 	function addItem(item: ItemType) {
 		list = [...list, item];
-		searchElement.focus();
+		searchRef.focus();
 	}
 
 	function show() {
@@ -50,7 +69,9 @@
 	}
 
 	$: if (search.length >= 2) {
-		results = getOptions(options, list).filter(({ name }) => name.toLowerCase().includes(search));
+		results = getOptions(options, list).filter(({ name }) =>
+			name.toLowerCase().includes(search.toLowerCase())
+		);
 	} else {
 		results = getOptions(options, list);
 	}
@@ -62,24 +83,37 @@
 		<div class="fieldset">
 			{#if isVisible}
 				<div class="overlay" on:click={hide} on:keydown={hide} />
+				<input
+					class="input-item"
+					class:open={isVisible}
+					bind:value={search}
+					bind:this={searchRef}
+					{placeholder}
+				/>
+			{:else}
+				<button class="add button" on:click={show}>+ {ListType[type]}</button>
 			{/if}
-			<input
-				class="search"
-				class:open={isVisible}
-				bind:value={search}
-				bind:this={searchElement}
-				placeholder="search for..."
-				on:focus={show}
-			/>
-			{#if results.length > 0 && (isVisible || search.length >= 2)}
-				<ul class="list fixed">
+			<ul class="list fixed" class:open={isVisible}>
+				{#if results.length > 0 && (isVisible || search.length >= 2)}
 					{#each results as item}
 						<li class="item">
 							<Item handleClick={() => addItem(item)} button="+" {item} {handleResult} />
 						</li>
 					{/each}
-				</ul>
-			{/if}
+				{:else if results.length === 0 && search.length >= 2 && isRepeatable}
+					<li class="item">
+						<Item
+							handleClick={() => addItem({ name: search, description: 'Custom item' })}
+							button="+"
+							item={{ name: `Add "${search}"` }}
+						/>
+					</li>
+				{:else if results.length === 0}
+					<li class="item">
+						{empty}
+					</li>
+				{/if}
+			</ul>
 		</div>
 	</div>
 	{#if list.length > 0}
@@ -132,7 +166,7 @@
 		background: rgba(0, 0, 0, 0.1);
 	}
 
-	.search {
+	.input-item {
 		font-size: 1rem;
 		box-sizing: border-box;
 		padding: 0.5rem 1rem;
@@ -141,7 +175,7 @@
 		border: 1px solid #555;
 	}
 
-	.search.open {
+	.input-item.open {
 		position: relative;
 		z-index: 1;
 	}
@@ -161,7 +195,7 @@
 	}
 
 	.list.fixed {
-		display: flex;
+		display: none;
 		flex-direction: column;
 		position: absolute;
 		top: 2rem;
@@ -175,10 +209,8 @@
 		box-sizing: border-box;
 	}
 
-	.item {
-		line-height: 2rem;
+	.list.fixed.open {
 		display: flex;
-		position: relative;
 	}
 
 	.list.fixed .item:nth-child(even) {
@@ -190,9 +222,19 @@
 		padding-left: 0.5rem;
 	}
 
-	.list .item :global(.button) {
-		width: 2rem;
+	.list .item :global(.button),
+	.add.button {
 		height: 2rem;
 		cursor: pointer;
+	}
+
+	.list .item :global(.button) {
+		width: 2rem;
+	}
+
+	.list .item {
+		line-height: 2rem;
+		display: flex;
+		position: relative;
 	}
 </style>
