@@ -128,17 +128,20 @@ export const WEAPONS: ItemType[] = [
 	{
 		name: 'Broadsword',
 		categories: [WeaponCategory.Hand],
-		description: 'A broad-bladed sword used for cutting rather than stabbing.'
+		description:
+			'A broad-bladed sword used for cutting rather than stabbing. Can be used two-handed to have damage modifier +1.'
 	},
 	{
 		name: 'Hand Axe',
 		categories: [WeaponCategory.Hand],
-		description: 'A short-handled axe intended for use with one hand.'
+		description:
+			'A short-handled axe intended for use with one hand. Can be used two-handed to have damage modifier +1.'
 	},
 	{
 		name: 'Mace',
 		categories: [WeaponCategory.Hand],
-		description: 'A heavy often spiked staff or club used for breaking armor.'
+		description:
+			'A heavy often spiked staff or club used for breaking armor. Can be used two-handed to have damage modifier +1.'
 	},
 	{
 		name: 'Greatsword',
@@ -160,48 +163,55 @@ export const WEAPONS: ItemType[] = [
 	{
 		name: 'Dagger',
 		categories: [WeaponCategory.Light],
-		description: 'A small, sharp blade with a handle.'
+		description: 'A small, sharp blade with a handle. Can be used two-handed to have initiative +1.'
 	},
 	{
 		name: 'Rapier',
 		categories: [WeaponCategory.Light],
-		description: 'A thin, light sharp-pointed sword used for thrusting.'
+		description:
+			'A thin, light sharp-pointed sword used for thrusting. Can be used two-handed to have initiative +1.'
 	},
 	{
 		name: 'Scimitar',
 		categories: [WeaponCategory.Light],
-		description: 'A  single-edged sword with a convex curved blade.'
+		description:
+			'A  single-edged sword with a convex curved blade. Can be used two-handed to have initiative +1.'
 	},
 	{
 		name: 'Spear',
 		categories: [WeaponCategory.Long],
-		description: 'A long, thin, two-handed polearm with a sharp point.'
+		description:
+			'A long, thin, two-handed polearm with a sharp point. Can be used two-handed to have damage modifier +1.'
 	},
 	{
 		name: 'Halberd',
 		categories: [WeaponCategory.Long],
-		description: 'A two-handed axe blade topped with a spike mounted on a long shaft.'
+		description:
+			'A two-handed axe blade topped with a spike mounted on a long shaft. Can be used two-handed to have damage modifier +1.'
 	},
 	{
 		name: 'Guisarme',
 		categories: [WeaponCategory.Long],
 		description:
-			'A shafted weapon having as a head a curved, double-edged blade with a beak at the back.'
+			'A shafted weapon having as a head a curved, double-edged blade with a beak at the back. Can be used two-handed to have damage modifier +1.'
 	},
 	{
 		name: 'Throwing Dagger',
 		categories: [WeaponCategory.Throwing],
-		description: 'A small, sharp blade used for throwing. 3 units.'
+		description:
+			'A small, sharp blade used for throwing. Can be used as Melee/Brawn, but have initiative -1. 3 units.'
 	},
 	{
 		name: 'Throwing Axe',
 		categories: [WeaponCategory.Throwing],
-		description: 'A small axe used for throwing. 3 units.'
+		description:
+			'A small axe used for throwing. Can be used as Melee/Brawn, but have initiative -1. 3 units.'
 	},
 	{
 		name: 'Javelin',
 		categories: [WeaponCategory.Throwing],
-		description: 'A long, thin, pointed spear used for throwing. 3 units.'
+		description:
+			'A long, thin, pointed spear used for throwing. Can be used as Melee/Brawn, but have initiative -1. 3 units.'
 	},
 	{
 		name: 'Crossbow',
@@ -222,18 +232,18 @@ export const WEAPONS: ItemType[] = [
 		name: 'Pistol',
 		categories: [WeaponCategory.Gunpowder, WeaponCategory.Throwing],
 		description:
-			'A small, portable firearm with a single barrel and a short stock. Every attack has Upper Hands. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
+			'A small, portable firearm with a single barrel and a short stock. Every attack has Upper Hand. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
 	},
 	{
 		name: 'Musket',
 		categories: [WeaponCategory.Gunpowder, WeaponCategory.Ranged],
 		description:
-			'A long barrel firearm, typically smooth-bored and fired from the shoulder. Every attack has Upper Hands. Require a full minute reloading and are usually only be fired once per combat. Can be used as a Heavy Weapon when equipped with a bayonet. 5 ammunitions.'
+			'A long barrel firearm, typically smooth-bored and fired from the shoulder. Every attack has Upper Hand. Require a full minute reloading and are usually only be fired once per combat. Can be used as a Heavy Weapon when equipped with a bayonet. 5 ammunitions.'
 	},
 	{
 		name: 'Blunderbuss',
 		categories: [WeaponCategory.Gunpowder, WeaponCategory.Heavy],
 		description:
-			'An obsolete short musket with large bore and flared muzzle, used to scatter shot at short range. Every attack has Upper Hands. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
+			'An obsolete short musket with large bore and flared muzzle, used to scatter shot at short range. Every attack has Upper Hand. Require a full minute reloading and are usually only be fired once per combat. 5 ammunitions.'
 	}
 ];

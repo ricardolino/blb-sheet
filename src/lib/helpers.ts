@@ -49,23 +49,30 @@ export function deleteSheetFile(name: string) {
 	}
 }
 
-export function handleWeapon({ categories = [] }: ItemType) {
+export function withSign(value: number) {
+	return value > 0 ? `+${value}` : value;
+}
+
+export const withBrackets = (value: any[]): string =>
+	value.length > 1 ? `[${value.join(' / ')}]` : `${value}`;
+
+export function handleWeapon({ categories = [] as ItemType[] }) {
 	const { Gunpowder } = WeaponCategory;
 
 	const getAttr = (attr: string, noGunpowder = false) => {
 		const filterGunpowder = (category: WeaponCategory) =>
 			noGunpowder ? category !== Gunpowder : category === Gunpowder;
-		const mapCategory = (category: WeaponCategory) => WEAPON_TYPE[category][attr];
+		const mapCategory = (category: WeaponCategory) => withSign(WEAPON_TYPE[category][attr]);
 
 		return categories.includes(Gunpowder)
 			? categories.filter(filterGunpowder).map(mapCategory)
 			: categories.map(mapCategory);
 	};
 
-	const attack = `${getAttr('attack')}`;
-	const range = `${getAttr('range', true)} range`;
-	const damageMod = `modifier ${getAttr('damageMod')}`;
-	const initiative = `initiative ${getAttr('initiative')}`;
+	const attack = `[${getAttr('attack').join(' / ')}]`.toUpperCase();
+	const range = `${withBrackets(getAttr('range', true))} range`;
+	const damageMod = `dmg modifier ${withBrackets(getAttr('damageMod'))}`;
+	const initiative = `initiative ${withBrackets(getAttr('initiative'))}`;
 
-	return `(${categories} | [${attack}] ${range} | ${damageMod} | ${initiative})`;
+	return `(${categories.join(' / ')} ${attack} | ${range} | ${damageMod} | ${initiative})`;
 }

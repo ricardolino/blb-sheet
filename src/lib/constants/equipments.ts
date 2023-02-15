@@ -8,10 +8,10 @@ enum ItemCategory {
 }
 
 export const DEFAULT_EQUIPMENTS: ItemType[] = [
+	{ name: 'Backpack' },
+	{ name: 'Bedroll' },
 	{ name: 'Rope', description: '15m long', categories: [ItemCategory.Tool] },
 	{ name: 'Torch', description: '1hr duration', categories: [ItemCategory.Tool] },
-	{ name: 'Backpack', categories: [ItemCategory.Equippable] },
-	{ name: 'Bedroll', categories: [ItemCategory.Special] },
 	{ name: 'Ration', description: '7 days', categories: [ItemCategory.Consumable] },
 	{
 		name: 'Basic Armour',
@@ -88,37 +88,7 @@ export const EQUIPMENTS: ItemType[] = [
 	{ name: 'Musical Instrument', categories: [ItemCategory.Tool] },
 	{ name: 'Lock and Key', categories: [ItemCategory.Tool] },
 	{
-		name: 'Book of Alchem',
-		description:
-			'Over an hour, a character can study a relevant book after which, the Doomsayer provides whatever useful information was gathered. A Wit Check may be required to find specific relevant information, or studying particularly complex or confusing books. Book`s information is not always perfectly accurate.',
-		categories: [ItemCategory.Special]
-	},
-	{
-		name: 'Book of Mythology',
-		description:
-			'Over an hour, a character can study a relevant book after which, the Doomsayer provides whatever useful information was gathered. A Wit Check may be required to find specific relevant information, or studying particularly complex or confusing books. Book`s information is not always perfectly accurate.',
-		categories: [ItemCategory.Special]
-	},
-	{
-		name: 'Book of Religio',
-		description:
-			'Over an hour, a character can study a relevant book after which, the Doomsayer provides whatever useful information was gathered. A Wit Check may be required to find specific relevant information, or studying particularly complex or confusing books. Book`s information is not always perfectly accurate.',
-		categories: [ItemCategory.Special]
-	},
-	{
-		name: 'Book of Magi',
-		description:
-			'Over an hour, a character can study a relevant book after which, the Doomsayer provides whatever useful information was gathered. A Wit Check may be required to find specific relevant information, or studying particularly complex or confusing books. Book`s information is not always perfectly accurate.',
-		categories: [ItemCategory.Special]
-	},
-	{
-		name: 'Book of Histor',
-		description:
-			'Over an hour, a character can study a relevant book after which, the Doomsayer provides whatever useful information was gathered. A Wit Check may be required to find specific relevant information, or studying particularly complex or confusing books. Book`s information is not always perfectly accurate.',
-		categories: [ItemCategory.Special]
-	},
-	{
-		name: 'Book of Language',
+		name: 'Book of Knowledge',
 		description:
 			'Over an hour, a character can study a relevant book after which, the Doomsayer provides whatever useful information was gathered. A Wit Check may be required to find specific relevant information, or studying particularly complex or confusing books. Book`s information is not always perfectly accurate.',
 		categories: [ItemCategory.Special]
@@ -134,7 +104,12 @@ export const EQUIPMENTS: ItemType[] = [
 	{ name: 'Antitoxin', categories: [ItemCategory.Consumable] },
 	{ name: 'Holy Water', categories: [ItemCategory.Consumable] },
 	{ name: 'Compass', categories: [ItemCategory.Tool] },
-	{ name: 'Spell Scroll', categories: [ItemCategory.Special] },
+	{
+		name: 'Spell Scroll',
+		description:
+			'Spell Scrolls are sorcerous texts granting knowledge of heinous spells and other esoteric magics. Using a Spell Scroll requires at least 1 Will. Every Scroll has an associated Advancement. To use the Advancement, spend 1 Grip + the Advancement`s Grip cost, (if applicable) consuming the Scroll, which crumbles to dust or reverts to inert paper.',
+		categories: [ItemCategory.Consumable, ItemCategory.Special]
+	},
 	{ name: 'Holy Relic', categories: [ItemCategory.Special] },
 	{
 		name: 'Gunpowder and beads',
@@ -158,7 +133,13 @@ export const EQUIPMENTS: ItemType[] = [
 	},
 	{
 		name: 'Bayonet',
-		description: 'Used to turn a long firearm into a spear-like weapon.',
+		description: 'Used to turn a long firearm into a melee weapon.',
 		categories: [ItemCategory.Equippable]
+	},
+	{
+		name: 'Potion',
+		description:
+			'Potions are drinkable chemical concoctions granting monstrous powers. Most are brewed from natural or monstrous components by arcane specialists known as "Chemikers". Every Potion has an associated Adaptation (pg 97). As an action, spend a point to Grip to drink a Potion, granting the Adaptation`s effects for a single combat or 5 minutes, whichever is shorter.',
+		categories: [ItemCategory.Consumable, ItemCategory.Special]
 	}
 ];
