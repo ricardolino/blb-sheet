@@ -3,7 +3,7 @@
 
 	import { ListType, CONDITIONS, ARCHETYPES, DEFAULT_SHEET, SHEETS_API_PATH } from '$lib/constants';
 
-	import { Attribute, List, Selector } from '$lib/components';
+	import { Attribute, List, Selector, Notes } from '$lib/components';
 	import type { Sheet } from '$lib/types';
 
 	export let isEdit = false;
@@ -87,6 +87,7 @@
 	<List type={ListType.equipments} bind:list={data.equipments} />
 	<List type={ListType.treasures} bind:list={data.treasures} />
 	<List type={ListType.weapons} bind:list={data.weapons} />
+	<Notes bind:value={data.notes} />
 	<button on:click={isEdit ? updateSheet : saveSheet}>{isEdit ? 'Update' : 'Save'}</button>
 </section>
 
