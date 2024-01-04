@@ -1,7 +1,17 @@
 <script lang="ts">
 	import { diff, handleWeapon } from '$lib/helpers';
 	import type { ItemType } from '$lib/types';
-	import { ADVANCEMENTS, AFFLICTIONS, EQUIPMENTS, WEAPONS, ListType } from '$lib/constants';
+	import {
+		ADVANCEMENTS,
+		AFFLICTIONS,
+		EQUIPMENTS,
+		WEAPONS,
+		ListType,
+		AdvancementCategory,
+		AfflictionCategory,
+		ItemCategory,
+		WeaponCategory
+	} from '$lib/constants';
 
 	import { Item } from '$lib/components';
 
@@ -9,18 +19,31 @@
 	export let list: ItemType[] = [];
 
 	let search = '';
+	let filter = '';
 	let results: ItemType[] = [];
 	let isVisible = false;
 	let searchRef: HTMLElement;
+	let filterRef: HTMLElement;
 
 	const LIST_OPTIONS = [
-		{ format: ListType.advancements, options: ADVANCEMENTS, placeholder: 'Search a Advancement' },
-		{ format: ListType.consequences, options: AFFLICTIONS, placeholder: 'Search a Consequence' },
+		{
+			format: ListType.advancements,
+			options: ADVANCEMENTS,
+			placeholder: 'Search a Advancement',
+			categories: Object.values(AdvancementCategory)
+		},
+		{
+			format: ListType.consequences,
+			options: AFFLICTIONS,
+			placeholder: 'Search a Consequence',
+			categories: Object.values(AfflictionCategory)
+		},
 		{
 			format: ListType.equipments,
 			options: EQUIPMENTS,
 			isRepeatable: true,
-			placeholder: 'Search or Add a New Equipment'
+			placeholder: 'Search or Add a New Equipment',
+			categories: Object.values(ItemCategory)
 		},
 		{
 			format: ListType.treasures,
@@ -34,7 +57,8 @@
 			options: WEAPONS,
 			isRepeatable: true,
 			handleResult: handleWeapon,
-			placeholder: 'Search or Add a New Weapon'
+			placeholder: 'Search or Add a New Weapon',
+			categories: Object.values(WeaponCategory)
 		}
 	];
 
@@ -43,7 +67,8 @@
 		isRepeatable = false,
 		handleResult,
 		placeholder,
-		empty = 'No Results'
+		empty = 'No Results',
+		categories = []
 	} = LIST_OPTIONS.find(({ format }) => format == type) || {};
 
 	function deleteItem(index: number) {
@@ -62,6 +87,7 @@
 	function hide() {
 		isVisible = false;
 		search = '';
+		filter = '';
 	}
 
 	function getOptions(options: ItemType[], list: ItemType[]) {
@@ -94,8 +120,21 @@
 				<button class="add button" on:click={show}>+ {ListType[type]}</button>
 			{/if}
 			<ul class="list fixed" class:open={isVisible}>
+				{#if categories.length > 0 && search.length === 0}
+					<label class="filter">
+						Filter by:
+						<select bind:value={filter} bind:this={filterRef}>
+							<option />
+							{#each categories as item}
+								<option value={item}>
+									{item}
+								</option>
+							{/each}
+						</select>
+					</label>
+				{/if}
 				{#if results.length > 0 && (isVisible || search.length >= 2)}
-					{#each results as item}
+					{#each filter ? results.filter( (item) => item.categories.includes(filter) ) : results as item}
 						<li class="item">
 							<Item handleClick={() => addItem(item)} button="+" {item} {handleResult} />
 						</li>
@@ -178,6 +217,12 @@
 	.input-item.open {
 		position: relative;
 		z-index: 1;
+	}
+
+	.filter {
+		display: flex;
+		align-self: end;
+		gap: 0.5rem;
 	}
 
 	.list {
