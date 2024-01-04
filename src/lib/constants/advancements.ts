@@ -6,10 +6,11 @@ export enum AdvancementCategory {
 	Devious = 'Devious',
 	Holy = 'Holy',
 	Bardic = 'Bardic',
-	Commanding = 'Commanding'
+	Commanding = 'Commanding',
+	Special = 'Special'
 }
 
-const { Arcane, Martial, Druidic, Technical, Devious, Holy, Bardic, Commanding } =
+const { Arcane, Martial, Druidic, Technical, Devious, Holy, Bardic, Commanding, Special } =
 	AdvancementCategory;
 
 export const ADVANCEMENTS = [
@@ -27,7 +28,7 @@ export const ADVANCEMENTS = [
 	},
 	{
 		name: 'Child of Prophecy',
-		categories: [],
+		categories: [Special],
 		description:
 			'Luck guides this character toward their destiny. Roll a D6 at the start of each Adventuring Day. The result can replace a single die roll, regardless of who rolled it. Choose to replace the roll after rolling but before applying the outcome. This advancement is exclusive to character creation or, if the Doomsayer allows, following a weird or wonderful act of destiny.'
 	},
@@ -45,38 +46,38 @@ export const ADVANCEMENTS = [
 	},
 	{
 		name: 'Ears of the Own',
-		categories: [],
+		categories: [Special],
 		description: 'All Observation Checks relying on hearing have the Upper Hand.'
 	},
 	{
 		name: 'Eldritch Pact',
-		categories: [],
+		categories: [Special],
 		description:
 			"The character pacts with a powerful extraplanar creature like a Cinderbeast, Herald or Beyonder, promising servitude in exchange for world-bending power. Immediately choose 2 more available Advancements as gifts from their patron. Make a note that they were gained from an Eldritch Pact and do not grant additional Vigour or Grip nor count towards requisite Advancements to become Titled. Touching such powerful beings' minds adversely affects one's health, granting a random Affliction, either chosen or rolled randomly. Eldritch Pacts always return to bite. Patrons may demand confusing or difficult favours, which must be fulfilled. Consequences for refusing can be dire, including but not limited to, additional Afflictions or Injuries, loss of Vigour or Grip, Stat reduction, revoking the Eldritch Pact's Advancements or even death."
 	},
 	{
 		name: 'Extra Brawn',
-		categories: [],
+		categories: [Special],
 		description: "Increases the character's Brawn by 1. Remember to recalculate Maximum Vigour."
 	},
 	{
 		name: 'Extra Grip',
-		categories: [],
+		categories: [Special],
 		description: "Increases the character's Grip by 3."
 	},
 	{
 		name: 'Extra Will',
-		categories: [],
+		categories: [Special],
 		description: "Increases the character's Will by 1."
 	},
 	{
 		name: 'Extra Wit',
-		categories: [],
+		categories: [Special],
 		description: "Increases the character's Wit by 1."
 	},
 	{
 		name: 'Eyes of the Hawk',
-		categories: [],
+		categories: [Special],
 		description: 'All Observation Checks relying on sight have the Upper Hand.'
 	},
 	{
@@ -151,7 +152,7 @@ export const ADVANCEMENTS = [
 	},
 	{
 		name: 'Radiant Blade',
-		categories: [],
+		categories: [Special],
 		description:
 			'Spend 1 Grip before an Attack gaining the Upper Hand and dealing an extra D3 damage (magical for any relevant Advancement and Adaptations) if it lands.'
 	},
@@ -163,7 +164,7 @@ export const ADVANCEMENTS = [
 	},
 	{
 		name: 'Restored Vigour',
-		categories: [],
+		categories: [Special],
 		description:
 			'The character immediately returns to their Max Vigour (5 + Brawn + number of Advancements).'
 	},
@@ -187,7 +188,7 @@ export const ADVANCEMENTS = [
 	},
 	{
 		name: 'Tough As Nails',
-		categories: [],
+		categories: [Special],
 		description:
 			'Increase Maximum Vigour by 1 for each Advancement. When they suffer an Injury, spend 1 Grip to roll twice on the Injury table, choosing their preferred result.'
 	},

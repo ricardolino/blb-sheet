@@ -1,6 +1,6 @@
 import type { ItemType } from '$lib/types';
 
-enum ItemCategory {
+export enum ItemCategory {
 	Tool = 'Tool',
 	Consumable = 'Consumable',
 	Equippable = 'Equippable',
@@ -8,8 +8,8 @@ enum ItemCategory {
 }
 
 export const DEFAULT_EQUIPMENTS: ItemType[] = [
-	{ name: 'Backpack' },
-	{ name: 'Bedroll' },
+	{ name: 'Backpack', categories: [ItemCategory.Tool] },
+	{ name: 'Bedroll', categories: [ItemCategory.Tool] },
 	{ name: 'Rope', description: '15m long', categories: [ItemCategory.Tool] },
 	{ name: 'Torch', description: '1hr duration', categories: [ItemCategory.Tool] },
 	{ name: 'Ration', description: '7 days', categories: [ItemCategory.Consumable] },
