@@ -6,7 +6,7 @@
 	export let handleClick: () => void;
 	export let handleResult = ({ categories = [] }: ItemType) => `(${categories.join(' | ')})`;
 
-	let isVisible = false;
+	export let isVisible = false;
 
 	function toggleVisibility() {
 		isVisible = !isVisible;

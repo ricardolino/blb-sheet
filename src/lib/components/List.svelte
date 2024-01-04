@@ -159,7 +159,13 @@
 		<ul class="list full">
 			{#each list as item, index}
 				<li class="item">
-					<Item handleClick={() => deleteItem(index)} button="-" {item} {handleResult} />
+					<Item
+						handleClick={() => deleteItem(index)}
+						button="-"
+						isVisible={true}
+						{item}
+						{handleResult}
+					/>
 				</li>
 			{/each}
 		</ul>
