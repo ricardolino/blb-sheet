@@ -4,14 +4,12 @@ import { sql, type QueryResult, type QueryResultRow } from '@vercel/postgres';
 export async function POST({ request }: { request: Request }) {
 	try {
 		const sheetData = await request.json();
-		const { rows }: QueryResult<QueryResultRow> =
-			await sql`INSERT INTO characters (data) VALUES (${sheetData})`;
+		await sql`INSERT INTO characters (data) VALUES (${JSON.stringify(sheetData)})`;
 
 		return new Response(
 			JSON.stringify({
 				success: true,
-				message: 'Character saved successfully',
-				data: rows[0].data
+				message: 'Character saved successfully'
 			}),
 			{ status: 200 }
 		);
