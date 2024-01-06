@@ -5,7 +5,7 @@ export async function POST({ request }: { request: Request }) {
 	try {
 		const sheetData = await request.json();
 		const response: QueryResult<QueryResultRow> =
-			await sql`INSERT INTO characters (data) VALUES (${sheetData}); SELECT SCOPE_IDENTITY()`;
+			await sql`INSERT INTO characters (data) VALUES (${sheetData}) RETURNING id`;
 
 		console.log('response: ', JSON.stringify(response));
 
