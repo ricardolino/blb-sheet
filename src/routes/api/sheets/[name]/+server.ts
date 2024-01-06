@@ -1,12 +1,12 @@
 import { error } from '@sveltejs/kit';
+import { sql, type QueryResult, type QueryResultRow } from '@vercel/postgres';
 
-import { deleteSheetFile, getSheetFile, saveSheetFile } from '$lib/helpers';
-
-export async function GET({ params }: { params: { name: string } }) {
+export async function GET({ params }: { params: { id: number } }) {
 	try {
-		const data = getSheetFile(params.name);
+		const { rows }: QueryResult<QueryResultRow> =
+			await sql`SELECT * FROM characters WHERE id = ${params.id}`;
 
-		return new Response(data.toString(), {
+		return new Response(rows[0].data, {
 			status: 200,
 			headers: { 'Content-Type': 'application/json' }
 		});
@@ -16,13 +16,14 @@ export async function GET({ params }: { params: { name: string } }) {
 	}
 }
 
-export async function PUT({ params, request }: { params: { name: string }; request: Request }) {
+export async function PUT({ params, request }: { params: { id: number }; request: Request }) {
 	try {
-		if (!params.name) {
+		if (!params.id) {
 			throw error(400, 'Missing character name');
 		}
 
-		await saveSheetFile(await request.json(), true);
+		const sheetData = await request.json();
+		await sql`UPDATE characters SET data = ${sheetData} WHERE id = ${params.id}`;
 
 		return new Response(
 			JSON.stringify({
@@ -37,9 +38,9 @@ export async function PUT({ params, request }: { params: { name: string }; reque
 	}
 }
 
-export async function DELETE({ params }: { params: { name: string } }) {
+export async function DELETE({ params }: { params: { id: number } }) {
 	try {
-		deleteSheetFile(params.name);
+		await sql`DELETE FROM characters WHERE id = ${params.id}`;
 
 		return new Response(
 			JSON.stringify({

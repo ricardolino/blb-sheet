@@ -14,7 +14,7 @@
 			throw new Error(response.statusText);
 		}
 
-		goto(`/${data.name}`);
+		goto(`/${data.id}`);
 	}
 
 	async function saveSheet() {
@@ -27,7 +27,7 @@
 	}
 
 	async function updateSheet() {
-		fetch(`${SHEETS_API_PATH}/${data.name}`, {
+		fetch(`${SHEETS_API_PATH}/${data.id}`, {
 			method: 'PUT',
 			body: JSON.stringify(data)
 		})
@@ -39,12 +39,7 @@
 <section class="head container">
 	<div class="flex spacer">
 		<div class="half">
-			<input
-				class="field"
-				bind:value={data.name}
-				placeholder="Character"
-				disabled={isEdit || null}
-			/>
+			<input class="field" bind:value={data.id} placeholder="Character" disabled={isEdit || null} />
 			<Selector
 				class="field"
 				placeholder="Archetype"

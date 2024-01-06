@@ -8,7 +8,7 @@
 	export let data: Sheet;
 
 	function deleteSheet() {
-		fetch(`${SHEETS_API_PATH}/${data.name}`, {
+		fetch(`${SHEETS_API_PATH}/${data.id}`, {
 			method: 'DELETE'
 		})
 			.then((response) => {
