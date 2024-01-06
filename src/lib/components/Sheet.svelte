@@ -39,7 +39,12 @@
 <section class="head container">
 	<div class="flex spacer">
 		<div class="half">
-			<input class="field" bind:value={data.id} placeholder="Character" disabled={isEdit || null} />
+			<input
+				class="field"
+				bind:value={data.name}
+				placeholder="Character"
+				disabled={isEdit || null}
+			/>
 			<Selector
 				class="field"
 				placeholder="Archetype"
