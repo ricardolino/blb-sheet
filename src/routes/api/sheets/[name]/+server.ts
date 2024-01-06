@@ -8,10 +8,16 @@ export async function GET({ params }: { params: { id: number } }) {
 
 		console.log('ROWS: ', rows);
 
-		return new Response(rows[0].data, {
-			status: 200,
-			headers: { 'Content-Type': 'application/json' }
-		});
+		return new Response(
+			{
+				...rows[0].data,
+				id: rows[0].id
+			},
+			{
+				status: 200,
+				headers: { 'Content-Type': 'application/json' }
+			}
+		);
 	} catch (err) {
 		console.error(err);
 		throw error(503, 'Could not get character');

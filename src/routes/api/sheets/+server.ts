@@ -1,15 +1,20 @@
 import { error } from '@sveltejs/kit';
-import { sql } from '@vercel/postgres';
+import { sql, type QueryResult, type QueryResultRow } from '@vercel/postgres';
 
 export async function POST({ request }: { request: Request }) {
 	try {
 		const sheetData = await request.json();
-		await sql`INSERT INTO characters (data) VALUES (${sheetData})`;
+		const { rows }: QueryResult<QueryResultRow> =
+			await sql`INSERT INTO characters (data) VALUES (${sheetData})`;
 
 		return new Response(
 			JSON.stringify({
 				success: true,
-				message: 'Character saved successfully'
+				message: 'Character saved successfully',
+				data: {
+					...rows[0].data,
+					id: rows[0].id
+				}
 			}),
 			{ status: 200 }
 		);
