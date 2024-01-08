@@ -6,13 +6,13 @@ export async function GET({ params }: { params: { id: number } }) {
 		const { rows }: QueryResult<QueryResultRow> =
 			await sql`SELECT * FROM characters WHERE id = ${params.id}`;
 
-		console.log('ROWS: ', rows);
+		const body = {
+			...rows[0].data,
+			id: rows[0].id
+		};
 
 		return new Response(
-			{
-				...rows[0].data,
-				id: rows[0].id
-			},
+			{ ...body },
 			{
 				status: 200,
 				headers: { 'Content-Type': 'application/json' }

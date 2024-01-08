@@ -3,9 +3,9 @@ import { sql, type QueryResult, type QueryResultRow } from '@vercel/postgres';
 
 export async function POST({ request }: { request: Request }) {
 	try {
-		const sheetData = await request.json();
+		const data = await request.json();
 		const response: QueryResult<QueryResultRow> =
-			await sql`INSERT INTO characters (data) VALUES (${sheetData}) RETURNING id`;
+			await sql`INSERT INTO characters (data) VALUES (${JSON.stringify(data)}) RETURNING id`;
 
 		console.log('response: ', JSON.stringify(response));
 
