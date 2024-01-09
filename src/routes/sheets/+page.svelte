@@ -13,7 +13,7 @@
 <ul class="grid">
 	{#each data.sheets as sheet}
 		<li class="item">
-			<a href={`/${sheet.id}`}>
+			<a href={`/sheets/${sheet.id}`}>
 				<h3 class="character">{sheet.name} ({sheet.archetype})</h3>
 				<div class="stats">
 					<div class="flex">

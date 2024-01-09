@@ -17,7 +17,7 @@
 
 			dispatchNotificationEvent('Sheet created successfully!');
 
-			goto(`/${body?.id}`);
+			goto(`/sheets/${body?.id}`);
 		} catch (error) {
 			console.error(error);
 		}
@@ -29,7 +29,7 @@
 
 			dispatchNotificationEvent('Sheet updated successfully!');
 
-			goto(`/${data.id}`);
+			goto(`/sheets/${data.id}`);
 		} catch (error) {
 			console.error(error);
 		}
