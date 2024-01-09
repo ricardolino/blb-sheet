@@ -101,6 +101,11 @@
 		border: 1px solid;
 		display: block;
 		text-decoration: none;
+		color: #333;
+	}
+
+	.item a:hover {
+		background-color: #f6f6f6;
 	}
 
 	.character {
@@ -141,8 +146,12 @@
 		border: 1px solid;
 		border-radius: 3px;
 		text-decoration: none;
-		background-color: #eee;
 		color: #000;
 		display: inline-block;
+		background-color: #f0f0f0;
+	}
+
+	.action:hover {
+		background-color: #e5e5e5;
 	}
 </style>
