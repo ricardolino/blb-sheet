@@ -5,6 +5,7 @@
 
 	import { Attribute, List, Selector, Notes } from '$lib/components';
 	import type { Sheet } from '$lib/types';
+	import { dispatchNotificationEvent } from '$lib/helpers';
 
 	export let isEdit = false;
 	export let data: Sheet = { ...DEFAULT_SHEET };
@@ -13,6 +14,8 @@
 		try {
 			const response = await fetch(SHEETS_API_PATH, { method: 'POST', body: JSON.stringify(data) });
 			const { body } = await response.json();
+
+			dispatchNotificationEvent('Sheet created successfully!');
 
 			goto(`/${body?.id}`);
 		} catch (error) {
@@ -23,6 +26,10 @@
 	async function updateSheet() {
 		try {
 			await fetch(`${SHEETS_API_PATH}/${data.id}`, { method: 'PUT', body: JSON.stringify(data) });
+
+			dispatchNotificationEvent('Sheet updated successfully!');
+
+			goto(`/${data.id}`);
 		} catch (error) {
 			console.error(error);
 		}
@@ -31,6 +38,9 @@
 	async function deleteSheet() {
 		try {
 			await fetch(`${SHEETS_API_PATH}/${data.id}`, { method: 'DELETE' });
+
+			dispatchNotificationEvent('Sheet deleted successfully!');
+
 			goto('/');
 		} catch (error) {
 			console.error(error);

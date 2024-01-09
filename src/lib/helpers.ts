@@ -32,3 +32,22 @@ export function handleWeapon({ categories = [] as ItemType[] }) {
 
 	return `(${categories.join(' / ')} ${attack} | ${range} | ${damageMod} | ${initiative})`;
 }
+
+export function setSessionStorageMessage(message: string) {
+	sessionStorage.setItem('message', message);
+}
+
+export function getSessionStorageMessage() {
+	const message = sessionStorage.getItem('message');
+
+	return message;
+}
+
+export function removeSessionStorageMessage() {
+	sessionStorage.removeItem('message');
+}
+
+export function dispatchNotificationEvent(message: string) {
+	setSessionStorageMessage(message);
+	dispatchEvent(new CustomEvent('notification'));
+}

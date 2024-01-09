@@ -1,9 +1,12 @@
 <script lang="ts">
+	import Notifications from '$lib/components/Notifications.svelte';
 	import type { Sheet as SheetType } from '$lib/types';
 
 	/** @type {import('./$types').PageData} */
 	export let data: { sheets: SheetType[] } = { sheets: [] };
 </script>
+
+<Notifications />
 
 <a class="action" href="/new">Create New Character</a>
 
