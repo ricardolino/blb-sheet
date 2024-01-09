@@ -9,42 +9,45 @@
 	export let isEdit = false;
 	export let data: Sheet = { ...DEFAULT_SHEET };
 
-	function handleResponse(response: Response) {
-		if (!response.ok) {
-			throw new Error(response.statusText);
-		}
-
-		goto(`/${data.id}`);
-	}
-
 	async function saveSheet() {
-		fetch(SHEETS_API_PATH, {
-			method: 'POST',
-			body: JSON.stringify(data)
-		})
-			.then(handleResponse)
-			.catch(console.error);
+		try {
+			const response = await fetch(SHEETS_API_PATH, { method: 'POST', body: JSON.stringify(data) });
+			const { body } = await response.json();
+
+			goto(`/${body?.id}`);
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	async function updateSheet() {
-		fetch(`${SHEETS_API_PATH}/${data.id}`, {
-			method: 'PUT',
-			body: JSON.stringify(data)
-		})
-			.then(handleResponse)
-			.catch(console.error);
+		try {
+			await fetch(`${SHEETS_API_PATH}/${data.id}`, { method: 'PUT', body: JSON.stringify(data) });
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	async function deleteSheet() {
+		try {
+			await fetch(`${SHEETS_API_PATH}/${data.id}`, { method: 'DELETE' });
+			goto('/');
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	function handleDeleteButton() {
+		if (confirm('Are you sure you want to delete this sheet?')) {
+			deleteSheet();
+		}
 	}
 </script>
 
 <section class="head container">
 	<div class="flex spacer">
 		<div class="half">
-			<input
-				class="field"
-				bind:value={data.name}
-				placeholder="Character"
-				disabled={isEdit || null}
-			/>
+			<input class="field" bind:value={data.name} placeholder="Character" />
 			<Selector
 				class="field"
 				placeholder="Archetype"
@@ -88,7 +91,18 @@
 	<List type={ListType.treasures} bind:list={data.treasures} />
 	<List type={ListType.weapons} bind:list={data.weapons} />
 	<Notes bind:value={data.notes} />
-	<button on:click={isEdit ? updateSheet : saveSheet}>{isEdit ? 'Update' : 'Save'}</button>
+</section>
+<section class="container">
+	<div class="actions">
+		{#if isEdit}
+			<button class="delete" on:click={handleDeleteButton}>Delete</button>
+		{/if}
+		{#if data.name && data.archetype}
+			<button on:click={isEdit ? updateSheet : saveSheet}>
+				{isEdit ? 'Update' : 'Save'}
+			</button>
+		{/if}
+	</div>
 </section>
 
 <style>
@@ -132,5 +146,20 @@
 
 	.vigor {
 		display: flex;
+	}
+
+	.actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 1rem;
+	}
+
+	.actions button {
+		height: 2rem;
+		cursor: pointer;
+	}
+
+	.actions button.delete {
+		color: #f00;
 	}
 </style>

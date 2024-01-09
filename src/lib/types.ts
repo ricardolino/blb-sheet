@@ -26,6 +26,7 @@ export interface WeaponType {
 }
 
 export interface Sheet {
+	id?: number;
 	name: string;
 	archetype: string;
 	experience: number;
@@ -43,4 +44,5 @@ export interface Sheet {
 	equipments: ItemType[];
 	treasures: ItemType[];
 	weapons: ItemType[];
+	notes: string;
 }

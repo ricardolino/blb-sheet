@@ -4,12 +4,7 @@
 	let notesRef: HTMLElement;
 </script>
 
-<textarea
-	class="notes"
-	bind:this={notesRef}
-	bind:value
-	placeholder="Notes (line breaks wont be saved)"
-/>
+<textarea class="notes" bind:this={notesRef} bind:value placeholder="Notes" />
 
 <style>
 	.notes {
