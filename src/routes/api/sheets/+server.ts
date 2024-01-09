@@ -20,6 +20,21 @@ export async function POST({ request }: { request: Request }) {
 		);
 	} catch (err) {
 		console.error(err);
-		throw error(503, 'Could not save character');
+		throw error(500, 'Could not save character');
+	}
+}
+
+export async function GET() {
+	try {
+		const { rows }: QueryResult<QueryResultRow> = await sql`SELECT * FROM characters`;
+		const body = rows.map((row) => ({ ...row.data, id: row.id }));
+
+		return new Response(JSON.stringify(body), {
+			status: 200,
+			headers: { 'Content-Type': 'application/json' }
+		});
+	} catch (err) {
+		console.error(err);
+		throw error(500, 'Could not get characters');
 	}
 }
